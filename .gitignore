@@ -16,3 +16,7 @@
 local.properties
 .java-version
 /hidden_api/build/
+CLAUDE.md
+# Keystore files (signing certificates)
+*.keystore
+*.jks

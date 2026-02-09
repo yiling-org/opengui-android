@@ -21,6 +21,16 @@ fun getLocalProperty(key: String, defaultValue: String = ""): String {
     return localProperties.getProperty(key, defaultValue)
 }
 
+// 签名配置（从 local.properties 读取密码）
+android.signingConfigs {
+    create("release") {
+        storeFile = file(getLocalProperty("KEYSTORE_FILE", "../release.keystore"))
+        storePassword = getLocalProperty("KEYSTORE_PASSWORD", "xxx")
+        keyAlias = getLocalProperty("KEY_ALIAS", "xxx")
+        keyPassword = getLocalProperty("KEY_PASSWORD", "xxx")
+    }
+}
+
 android {
     namespace = "top.yling.ozx.guiagent"
     compileSdk {
@@ -48,6 +58,8 @@ android {
 
     buildTypes {
         release {
+            // 使用配置的签名证书
+            signingConfig = signingConfigs.getByName("release")
             // 禁用代码混淆（Kotlin suspend + Retrofit 泛型与 R8 不兼容）
             isMinifyEnabled = false
             isShrinkResources = false
