@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+    android:repeatMode="reverse"
+    android:repeatCount="infinite">
+
+    <!-- 上下浮动动画 -->
+    <translate
+        android:fromYDelta="0"
+        android:toYDelta="-8dp"
+        android:duration="800"
+        android:repeatMode="reverse"
+        android:repeatCount="infinite" />
+
+    <!-- 透明度呼吸效果 -->
+    <alpha
+        android:fromAlpha="0.5"
+        android:toAlpha="0.9"
+        android:duration="800"
+        android:repeatMode="reverse"
+        android:repeatCount="infinite" />
+
+</set>

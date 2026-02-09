@@ -1,0 +1,955 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_medium">
+
+        <!-- 返回按钮 -->
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="@dimen/button_size_small"
+            android:layout_height="@dimen/button_size_small"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back"
+            android:tint="@color/text_primary"
+            android:contentDescription="返回"
+            android:padding="@dimen/spacing_xsmall"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 标题 -->
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="高级设置"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_title"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginTop="@dimen/spacing_xsmall"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 权限配置 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/permissionCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/radius_medium"
+            app:cardElevation="4dp"
+            app:strokeWidth="0.5dp"
+            app:strokeColor="@color/card_border"
+            app:layout_constraintTop_toBottomOf="@id/titleText">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding_medium">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="权限配置"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_body"
+                    android:textStyle="bold" />
+
+                <!-- 无障碍服务 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/accessibilityStatusDot"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:background="@drawable/status_dot_red" />
+
+                    <TextView
+                        android:id="@+id/accessibilityStatusText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:layout_weight="1"
+                        android:text="无障碍服务: 未启用"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/openAccessibilityButton"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/button_size_small"
+                        android:text="去开启"
+                        android:textColor="@color/accent_indigo"
+                        android:textSize="@dimen/text_size_small"
+                        app:strokeColor="@color/accent_indigo"
+                        app:strokeWidth="1dp" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/testAccessibilityButton"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_size_small"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:text="功能测试"
+                    android:textColor="@color/accent_gold"
+                    android:textSize="@dimen/text_size_body"
+                    app:strokeColor="@color/accent_gold"
+                    app:strokeWidth="1dp" />
+
+                <!-- 分隔线 -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:background="@color/card_border" />
+
+                <!-- 电池优化豁免 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/batteryStatusDot"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:background="@drawable/status_dot_red" />
+
+                    <TextView
+                        android:id="@+id/batteryStatusText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:layout_weight="1"
+                        android:text="电池优化: 未豁免"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/requestBatteryButton"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/button_size_small"
+                        android:text="申请豁免"
+                        android:textColor="@color/accent_indigo"
+                        android:textSize="@dimen/text_size_small"
+                        app:strokeColor="@color/accent_indigo"
+                        app:strokeWidth="1dp" />
+                </LinearLayout>
+
+                <!-- 分隔线 -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:background="@color/card_border" />
+
+                <!-- 悬浮窗权限 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/overlayStatusDot"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:background="@drawable/status_dot_red" />
+
+                    <TextView
+                        android:id="@+id/overlayStatusText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:layout_weight="1"
+                        android:text="悬浮窗权限: 未授予"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/requestOverlayButton"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/button_size_small"
+                        android:text="去授予"
+                        android:textColor="@color/accent_indigo"
+                        android:textSize="@dimen/text_size_small"
+                        app:strokeColor="@color/accent_indigo"
+                        app:strokeWidth="1dp" />
+                </LinearLayout>
+
+                <!-- 分隔线 -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:background="@color/card_border" />
+
+                <!-- Shizuku 授权 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/shizukuStatusDot"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:background="@drawable/status_dot_red" />
+
+                    <TextView
+                        android:id="@+id/shizukuStatusText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:layout_weight="1"
+                        android:text="Shizuku: 未授权"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/requestShizukuButton"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/button_size_small"
+                        android:text="去授权"
+                        android:textColor="@color/accent_indigo"
+                        android:textSize="@dimen/text_size_small"
+                        app:strokeColor="@color/accent_indigo"
+                        app:strokeWidth="1dp" />
+                </LinearLayout>
+
+                <!-- 小米设备额外权限（自启动和后台弹出） -->
+                <LinearLayout
+                    android:id="@+id/xiaomiPermissionLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <!-- 分隔线 -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginBottom="@dimen/spacing_medium"
+                        android:background="@color/card_border" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="小米设备额外配置"
+                        android:textColor="@color/accent_gold"
+                        android:textSize="@dimen/text_size_small"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_tiny"
+                        android:text="需要开启自启动和后台弹出界面权限"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_size_caption" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/xiaomiPermissionButton"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/button_size_small"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:text="开启后台弹出界面权限"
+                        android:textColor="@color/accent_gold"
+                        android:textSize="@dimen/text_size_body"
+                        app:strokeColor="@color/accent_gold"
+                        app:strokeWidth="1dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 运行模式 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/runModeCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/radius_medium"
+            app:cardElevation="4dp"
+            app:strokeWidth="0.5dp"
+            app:strokeColor="@color/card_border"
+            app:layout_constraintTop_toBottomOf="@id/permissionCard">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding_medium">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="运行模式"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_body"
+                    android:textStyle="bold" />
+
+                <!-- 虚拟屏模式开关 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="虚拟屏模式"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_small" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_tiny"
+                            android:text="开启后使用虚拟屏执行任务，无需占用真实屏幕"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="@dimen/text_size_caption" />
+                    </LinearLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/virtualDisplaySwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        app:thumbTint="@color/switch_thumb_color"
+                        app:trackTint="@color/switch_track_color" />
+                </LinearLayout>
+
+                <!-- 分隔线 -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:background="@color/card_border" />
+
+                <!-- Debug 模式开关 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Debug 模式"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_small" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_tiny"
+                            android:text="开启后显示调试按钮"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="@dimen/text_size_caption" />
+                    </LinearLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/debugModeSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        app:thumbTint="@color/switch_thumb_color"
+                        app:trackTint="@color/switch_track_color" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 图片压缩配置 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/imageCompressionCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/radius_medium"
+            app:cardElevation="4dp"
+            app:strokeWidth="0.5dp"
+            app:strokeColor="@color/card_border"
+            app:layout_constraintTop_toBottomOf="@id/runModeCard">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding_medium">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="图片压缩配置"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_body"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:text="调整截图上传时的压缩参数"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_caption" />
+
+                <!-- JPEG 质量滑块 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="JPEG 压缩质量"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_small" />
+
+                        <TextView
+                            android:id="@+id/jpegQualityValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="85%"
+                            android:textColor="@color/accent_indigo"
+                            android:textSize="@dimen/text_size_small"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/jpegQualitySlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:valueFrom="70"
+                        android:valueTo="100"
+                        android:value="85"
+                        android:stepSize="5"
+                        app:thumbColor="@color/accent_indigo"
+                        app:trackColorActive="@color/accent_indigo"
+                        app:trackColorInactive="@color/card_border" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="值越大图片越清晰，但文件也越大"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_size_caption" />
+                </LinearLayout>
+
+                <!-- 分隔线 -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:background="@color/card_border" />
+
+                <!-- 缩放比例滑块 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="图片缩放比例"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_small" />
+
+                        <TextView
+                            android:id="@+id/scaleFactorValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="40%"
+                            android:textColor="@color/accent_indigo"
+                            android:textSize="@dimen/text_size_small"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/scaleFactorSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:valueFrom="30"
+                        android:valueTo="100"
+                        android:value="40"
+                        android:stepSize="10"
+                        app:thumbColor="@color/accent_indigo"
+                        app:trackColorActive="@color/accent_indigo"
+                        app:trackColorInactive="@color/card_border" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="值越大图片尺寸越大，但传输也越慢"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_size_caption" />
+                </LinearLayout>
+
+                <!-- 重置按钮 -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/resetCompressionButton"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_size_small"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:text="恢复默认值"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_small"
+                    app:strokeColor="@color/text_secondary"
+                    app:strokeWidth="1dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 模型配置 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/llmConfigCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/radius_medium"
+            app:cardElevation="4dp"
+            app:strokeWidth="0.5dp"
+            app:strokeColor="@color/card_border"
+            app:layout_constraintTop_toBottomOf="@id/imageCompressionCard">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding_medium">
+
+                <!-- 标题和启用开关 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="模型配置"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_body"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_tiny"
+                            android:text="使用自定义模型（豆包）"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="@dimen/text_size_caption" />
+                    </LinearLayout>
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/llmEnabledSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:thumbTint="@color/switch_thumb_color"
+                        app:trackTint="@color/switch_track_color" />
+                </LinearLayout>
+
+                <!-- 配置内容区域（启用后显示） -->
+                <LinearLayout
+                    android:id="@+id/llmConfigContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/spacing_medium">
+
+                    <!-- 模型类型选择 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="模型类型"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_small" />
+
+                        <Spinner
+                            android:id="@+id/llmTypeSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="@dimen/spacing_tiny"
+                            android:background="@drawable/spinner_background"
+                            android:padding="@dimen/spacing_small"
+                            android:popupBackground="@color/card_background" />
+                    </LinearLayout>
+
+                    <!-- API Key 输入 -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/llmApiKeyLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:hint="API Key"
+                        app:boxStrokeColor="@color/accent_indigo"
+                        app:hintTextColor="@color/text_secondary"
+                        app:endIconMode="password_toggle">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/llmApiKeyInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_small" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Model Key 输入 -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/llmModelKeyLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:hint="Model Key (ep-xxx)"
+                        app:boxStrokeColor="@color/accent_indigo"
+                        app:hintTextColor="@color/text_secondary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/llmModelKeyInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_small" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- 保存按钮 -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/saveLlmConfigButton"
+                        style="@style/Widget.MaterialComponents.Button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:text="保存配置"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/accent_indigo"
+                        app:cornerRadius="@dimen/radius_small" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 讯飞语音配置 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/iflytekConfigCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/radius_medium"
+            app:cardElevation="4dp"
+            app:strokeWidth="0.5dp"
+            app:strokeColor="@color/card_border"
+            app:layout_constraintTop_toBottomOf="@id/llmConfigCard">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding_medium">
+
+                <!-- 标题 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="语音识别配置"
+                            android:textColor="@color/text_primary"
+                            android:textSize="@dimen/text_size_body"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_tiny"
+                            android:text="配置讯飞语音识别 SDK"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="@dimen/text_size_caption" />
+                    </LinearLayout>
+
+                    <!-- 配置状态指示 -->
+                    <View
+                        android:id="@+id/iflytekStatusDot"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:background="@drawable/status_dot_red" />
+                </LinearLayout>
+
+                <!-- 状态提示 -->
+                <TextView
+                    android:id="@+id/iflytekStatusText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:text="未配置"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_caption" />
+
+                <!-- 配置指引链接 -->
+                <TextView
+                    android:id="@+id/iflytekGuideLink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:text="如何获取配置？点击查看指引 →"
+                    android:textColor="@color/accent_indigo"
+                    android:textSize="@dimen/text_size_caption"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <!-- App ID 输入 -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/iflytekAppIdLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:hint="App ID"
+                    app:boxStrokeColor="@color/accent_indigo"
+                    app:hintTextColor="@color/text_secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/iflytekAppIdInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_size_small" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- API Key 输入 -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/iflytekApiKeyLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:hint="API Key"
+                    app:boxStrokeColor="@color/accent_indigo"
+                    app:hintTextColor="@color/text_secondary"
+                    app:endIconMode="password_toggle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/iflytekApiKeyInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_size_small" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- API Secret 输入 -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/iflytekApiSecretLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:hint="API Secret"
+                    app:boxStrokeColor="@color/accent_indigo"
+                    app:hintTextColor="@color/text_secondary"
+                    app:endIconMode="password_toggle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/iflytekApiSecretInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_size_small" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- 按钮区域 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <!-- 清除配置按钮 -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/clearIflytekConfigButton"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/spacing_small"
+                        android:text="清除配置"
+                        android:textColor="@color/text_secondary"
+                        app:strokeColor="@color/text_secondary"
+                        app:cornerRadius="@dimen/radius_small" />
+
+                    <!-- 保存按钮 -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/saveIflytekConfigButton"
+                        style="@style/Widget.MaterialComponents.Button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="保存配置"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/accent_indigo"
+                        app:cornerRadius="@dimen/radius_small" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 日志输出 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/logCard"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginBottom="@dimen/spacing_medium"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/radius_medium"
+            app:cardElevation="4dp"
+            app:strokeWidth="0.5dp"
+            app:strokeColor="@color/card_border"
+            app:layout_constraintTop_toBottomOf="@id/iflytekConfigCard">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding_small">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="日志"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_size_small"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/clearLogButton"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="清除"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_size_caption"
+                        android:padding="@dimen/spacing_xsmall" />
+                </LinearLayout>
+
+                <ScrollView
+                    android:id="@+id/logScrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/spacing_small">
+
+                    <TextView
+                        android:id="@+id/logText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:text="等待连接..."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_size_caption" />
+                </ScrollView>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- 圆角矩形 -->
+    <corners android:radius="36dp" />
+
+    <!-- 录音时的紫色发光效果 -->
+    <gradient
+        android:angle="135"
+        android:startColor="#408b5cf6"
+        android:centerColor="#506366f1"
+        android:endColor="#408b5cf6"
+        android:type="linear" />
+</shape>

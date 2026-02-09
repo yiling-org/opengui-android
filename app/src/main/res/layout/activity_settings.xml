@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_medium">
+
+        <!-- 返回按钮 -->
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="@dimen/button_size_small"
+            android:layout_height="@dimen/button_size_small"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back"
+            android:tint="@color/text_primary"
+            android:contentDescription="返回"
+            android:padding="@dimen/spacing_xsmall"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 标题 -->
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_title"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginTop="@dimen/spacing_xsmall"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 账户设置 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/accountCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_large"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/radius_medium"
+            app:cardElevation="4dp"
+            app:strokeWidth="0.5dp"
+            app:strokeColor="@color/card_border"
+            app:layout_constraintTop_toBottomOf="@id/titleText">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding_medium"
+                android:gravity="center_horizontal">
+
+                <!-- 头像 -->
+                <ImageView
+                    android:id="@+id/avatarImageView"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_person"
+                    android:background="@drawable/circle_avatar_border"
+                    android:padding="16dp"
+                    android:scaleType="fitCenter"
+                    android:tint="@color/text_primary"
+                    android:contentDescription="用户头像" />
+
+                <!-- 用户名 -->
+                <TextView
+                    android:id="@+id/usernameText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:text="Not logged in"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_body"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+
+                <!-- 个人说明标题和编辑按钮 -->
+                <LinearLayout
+                    android:id="@+id/profileHeaderLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="个人说明"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_size_small" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/editProfileButton"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="编辑"
+                        android:textColor="@color/accent_indigo"
+                        android:textSize="@dimen/text_size_small"
+                        android:minHeight="0dp"
+                        android:minWidth="0dp"
+                        android:padding="@dimen/spacing_xsmall" />
+                </LinearLayout>
+
+                <!-- 只读模式：显示已保存的个人说明 -->
+                <TextView
+                    android:id="@+id/userProfileDisplay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:text="点击编辑添加个人说明..."
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_small"
+                    android:alpha="0.7"
+                    android:padding="@dimen/spacing_small"
+                    android:background="@drawable/profile_display_background"
+                    android:minHeight="60dp"
+                    android:gravity="top|start" />
+
+                <!-- 编辑模式：输入框 -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/userProfileLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:hint="个人说明"
+                    android:visibility="gone"
+                    app:boxStrokeColor="@color/accent_indigo"
+                    app:hintTextColor="@color/text_secondary"
+                    app:boxStrokeWidth="1dp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="500"
+                    app:helperText="描述您的个人信息和喜好，AI助手将据此提供个性化服务">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/userProfileInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:minLines="3"
+                        android:maxLines="6"
+                        android:gravity="top|start"
+                        android:textColor="@color/text_primary" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- 编辑模式：保存和取消按钮 -->
+                <LinearLayout
+                    android:id="@+id/profileEditButtonsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/cancelProfileButton"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/button_size_small"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/spacing_small"
+                        android:text="取消"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_size_small"
+                        app:strokeColor="@color/text_secondary"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/saveProfileButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/button_size_small"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:text="保存"
+                        android:textSize="@dimen/text_size_small"
+                        app:backgroundTint="@color/accent_indigo"
+                        app:cornerRadius="@dimen/radius_small" />
+                </LinearLayout>
+
+                <!-- 分隔线 -->
+                <View
+                    android:id="@+id/accountDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:background="@color/card_border" />
+
+                <!-- 登出按钮 -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/logoutButton"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_size_small"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:text="退出登录"
+                    android:textColor="@color/error"
+                    android:textSize="@dimen/text_size_small"
+                    app:strokeColor="@color/error"
+                    app:strokeWidth="1dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- WebSocket 连接设置 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/websocketCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/radius_medium"
+            app:cardElevation="4dp"
+            app:strokeWidth="0.5dp"
+            app:strokeColor="@color/card_border"
+            app:layout_constraintTop_toBottomOf="@id/accountCard">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding_medium">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="连接"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_size_body"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/websocketUrlLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:hint="服务器地址"
+                    app:boxStrokeColor="@color/accent_indigo"
+                    app:hintTextColor="@color/text_secondary"
+                    app:boxStrokeWidth="1dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/websocketUrlInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textUri"
+                        android:text="ws://10.220.184.5:8181/mcp/ws"
+                        android:textColor="@color/text_primary" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_small"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/wsStatusDot"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:background="@drawable/status_dot_red" />
+
+                    <TextView
+                        android:id="@+id/wsStatusText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:layout_weight="1"
+                        android:text="未连接"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_size_small" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/connectButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/button_size_medium"
+                        android:layout_marginEnd="@dimen/spacing_small"
+                        android:layout_weight="1"
+                        android:text="连接"
+                        android:textSize="@dimen/text_size_body"
+                        android:textStyle="bold"
+                        app:backgroundTint="@color/accent_indigo"
+                        app:cornerRadius="@dimen/radius_small" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/disconnectButton"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/button_size_medium"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:layout_weight="1"
+                        android:text="断开"
+                        android:textColor="@color/error"
+                        android:textSize="@dimen/text_size_body"
+                        android:textStyle="bold"
+                        app:strokeColor="@color/error"
+                        app:strokeWidth="1dp" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/resetServerUrlButton"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/spacing_xsmall"
+                    android:text="恢复默认地址"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_size_small"
+                    android:padding="@dimen/spacing_xsmall" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 高级设置入口 -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/advancedSettingsCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginBottom="@dimen/spacing_medium"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/radius_medium"
+            app:cardElevation="4dp"
+            app:strokeWidth="0.5dp"
+            app:strokeColor="@color/card_border"
+            app:layout_constraintTop_toBottomOf="@id/websocketCard">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/card_padding_medium"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_settings"
+                    android:tint="@color/text_secondary"
+                    android:contentDescription="设置图标" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="高级设置"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_size_body"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_tiny"
+                        android:text="权限、调试、模型等专业配置"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="@dimen/text_size_caption" />
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_expand_more"
+                    android:rotation="-90"
+                    android:tint="@color/text_secondary"
+                    android:contentDescription="箭头" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

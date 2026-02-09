@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 背景模糊层 -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/card_glass" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+    <!-- 边框高光 -->
+    <item>
+        <shape android:shape="rectangle">
+            <stroke
+                android:width="0.5dp"
+                android:color="@color/card_border" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+</layer-list>

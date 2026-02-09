@@ -1,0 +1,42 @@
+<resources>
+    <!-- ======================================================================
+         App Name Configuration (改名只需修改以下字符串)
+         注意：修改 app_name 后，以下所有含 app_name 的字符串也需一并修改
+         ====================================================================== -->
+    <string name="app_name">OpenGUI</string>
+    <string name="app_name_assistant">OpenGUI助手</string>
+    <string name="app_name_question">OpenGUI提问</string>
+    <string name="app_name_message">OpenGUI消息</string>
+    <string name="app_name_wake_word">你好OpenGUI</string>
+    <string name="app_name_welcome">欢迎使用OpenGUI！</string>
+    <string name="app_name_enable_hint">请找到 \"%1$s\" 并启用</string>
+    <string name="app_name_assistant_ready">%1$s已就绪，随时为您服务</string>
+    <string name="accessibility_service_description">OpenGUI无障碍服务，用于模拟点击、滑动等屏幕操作。</string>
+    <!-- ======== End App Name Configuration ======== -->
+
+    <!-- Accessibility Strings -->
+    <string name="accessibility_settings_button">打开设置</string>
+    <string name="accessibility_logo">应用图标</string>
+    <string name="accessibility_title">@string/app_name</string>
+    <string name="accessibility_subtitle">由人工智能驱动</string>
+    <string name="accessibility_waveform">语音波形可视化</string>
+    <string name="accessibility_record_button">录音按钮，按住说话</string>
+    <string name="accessibility_record_button_pressed">正在录音</string>
+    <string name="accessibility_record_button_processing">正在处理</string>
+    <string name="accessibility_microphone_icon">麦克风图标</string>
+    <string name="accessibility_transcription_label">语音转录</string>
+    <string name="accessibility_transcription_empty">暂无转录内容</string>
+    <string name="accessibility_response_text">响应文本</string>
+    
+    <!-- Status Announcements -->
+    <string name="accessibility_recording_started">开始录音</string>
+    <string name="accessibility_recording_stopped">录音已停止</string>
+    <string name="accessibility_processing">正在处理您的语音</string>
+    <string name="accessibility_success">处理成功</string>
+    <string name="accessibility_error">发生错误</string>
+    <string name="accessibility_ready">准备就绪，按住按钮说话</string>
+    <string name="accessibility_permission_required">需要麦克风权限</string>
+    
+    <!-- Instructions -->
+    <string name="accessibility_hint_record_button">按住此按钮开始录音，松开结束录音</string>
+</resources>

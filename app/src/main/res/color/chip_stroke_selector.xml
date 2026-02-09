@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 选中状态：使用主题色边框 -->
+    <item android:color="@color/chip_border_selected" android:state_checked="true" />
+    <!-- 未选中状态：使用亮色边框，与输入框一致 -->
+    <item android:color="@color/chip_border_unselected" />
+</selector>
+

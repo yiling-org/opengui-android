@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 字体大小系统 -->
+    <dimen name="text_size_xlarge">24sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_title">18sp</dimen>
+    <dimen name="text_size_body">16sp</dimen>
+    <dimen name="text_size_medium">15sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_caption">12sp</dimen>
+    <dimen name="text_size_tiny">11sp</dimen>
+    
+    <!-- 间距系统 - 乔布斯式呼吸感 -->
+    <dimen name="spacing_hero">48dp</dimen>
+    <dimen name="spacing_xxlarge">40dp</dimen>
+    <dimen name="spacing_xlarge">32dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_small">12dp</dimen>
+    <dimen name="spacing_xsmall">8dp</dimen>
+    <dimen name="spacing_tiny">4dp</dimen>
+
+    <!-- Section 间距 - 用于卡片/区块之间 -->
+    <dimen name="section_spacing">28dp</dimen>
+    
+    <!-- 圆角系统 -->
+    <dimen name="radius_large">24dp</dimen>
+    <dimen name="radius_medium">16dp</dimen>
+    <dimen name="radius_small">12dp</dimen>
+    <dimen name="radius_xsmall">8dp</dimen>
+    <dimen name="radius_circle">60dp</dimen>
+    
+    <!-- 按钮尺寸 -->
+    <dimen name="button_size_large">120dp</dimen>
+    <dimen name="button_size_medium">56dp</dimen>
+    <dimen name="button_size_small">44dp</dimen>
+    
+    <!-- 图标尺寸 -->
+    <dimen name="icon_size_large">48dp</dimen>
+    <dimen name="icon_size_medium">24dp</dimen>
+    <dimen name="icon_size_small">20dp</dimen>
+    
+    <!-- 卡片内边距 -->
+    <dimen name="card_padding_large">20dp</dimen>
+    <dimen name="card_padding_medium">16dp</dimen>
+    <dimen name="card_padding_small">12dp</dimen>
+    
+    <!-- 行间距 -->
+    <dimen name="line_spacing_extra">4dp</dimen>
+</resources>
+

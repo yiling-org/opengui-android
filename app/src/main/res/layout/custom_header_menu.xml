@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/popup_menu_background"
+    android:padding="4dp">
+
+    <!-- 虚拟屏模式开关 -->
+    <LinearLayout
+        android:id="@+id/menuItemVirtualDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/spacing_medium"
+        android:paddingEnd="@dimen/spacing_medium"
+        android:background="@drawable/popup_menu_item_background"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="@dimen/icon_size_small"
+            android:layout_height="@dimen/icon_size_small"
+            android:src="@drawable/ic_virtual_display"
+            android:tint="@color/accent_gold"
+            android:layout_marginEnd="@dimen/spacing_small" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="虚拟屏"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_small" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/virtualDisplaySwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false" />
+    </LinearLayout>
+
+    <!-- 分隔线 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:layout_marginEnd="@dimen/spacing_medium"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/divider" />
+
+    <!-- 收起 -->
+    <LinearLayout
+        android:id="@+id/menuItemMinimize"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/spacing_medium"
+        android:paddingEnd="@dimen/spacing_large"
+        android:background="@drawable/popup_menu_item_background"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="@dimen/icon_size_small"
+            android:layout_height="@dimen/icon_size_small"
+            android:src="@drawable/ic_minimize"
+            android:tint="@color/accent_gold"
+            android:layout_marginEnd="@dimen/spacing_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收起"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_small" />
+    </LinearLayout>
+
+    <!-- 历史 -->
+    <LinearLayout
+        android:id="@+id/menuItemHistory"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/spacing_medium"
+        android:paddingEnd="@dimen/spacing_large"
+        android:background="@drawable/popup_menu_item_background"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="@dimen/icon_size_small"
+            android:layout_height="@dimen/icon_size_small"
+            android:src="@drawable/ic_history"
+            android:tint="@color/accent_gold"
+            android:layout_marginEnd="@dimen/spacing_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="历史"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_small" />
+    </LinearLayout>
+
+    <!-- 技能 -->
+    <LinearLayout
+        android:id="@+id/menuItemSkills"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/spacing_medium"
+        android:paddingEnd="@dimen/spacing_large"
+        android:background="@drawable/popup_menu_item_background"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="@dimen/icon_size_small"
+            android:layout_height="@dimen/icon_size_small"
+            android:src="@drawable/ic_skills"
+            android:tint="@color/accent_gold"
+            android:layout_marginEnd="@dimen/spacing_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="技能"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_small" />
+    </LinearLayout>
+
+    <!-- 定时任务 -->
+    <LinearLayout
+        android:id="@+id/menuItemScheduledTasks"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/spacing_medium"
+        android:paddingEnd="@dimen/spacing_large"
+        android:background="@drawable/popup_menu_item_background"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="@dimen/icon_size_small"
+            android:layout_height="@dimen/icon_size_small"
+            android:src="@drawable/ic_schedule"
+            android:tint="@color/accent_gold"
+            android:layout_marginEnd="@dimen/spacing_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="定时任务"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_small" />
+    </LinearLayout>
+
+    <!-- AI Agents 菜单项已移除 -->
+
+    <!-- 输入模式切换已移至底部，此处不再需要 -->
+
+</LinearLayout>

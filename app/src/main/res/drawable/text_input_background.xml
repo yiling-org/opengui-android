@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    
+    <!-- 圆角 -->
+    <corners android:radius="24dp" />
+    
+    <!-- 轻量半透明背景 - 玻璃态效果 -->
+    <solid android:color="@color/card_glass" />
+    
+    <!-- 细腻的边框 -->
+    <stroke
+        android:width="0.5dp"
+        android:color="@color/card_border" />
+</shape>
+

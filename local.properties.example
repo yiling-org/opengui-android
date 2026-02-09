@@ -1,0 +1,54 @@
+# =============================================================================
+# Android GUI Agent - Local Configuration Template
+# =============================================================================
+# Usage:
+# 1. Copy this file and rename to local.properties
+# 2. Fill in your configuration values
+# 3. Note: local.properties should NOT be committed to version control
+# =============================================================================
+
+# =============================================================================
+# Android SDK Configuration
+# =============================================================================
+# SDK path is auto-configured in one of these ways (no manual setup needed):
+# - Android Studio: auto-generates sdk.dir when you open the project
+# - Environment variable: set ANDROID_HOME or ANDROID_SDK_ROOT
+# - Manual (optional): uncomment and set the path below
+# sdk.dir=/path/to/android/sdk
+
+# =============================================================================
+# Server Configuration (required)
+# =============================================================================
+
+# WebSocket server URL
+# Format: ws://host:port/path or wss://host:port/path
+WEBSOCKET_URL=ws://your-server:8181/mcp/ws
+
+# API server URL
+# Format: http://host:port or https://host:port
+API_BASE_URL=http://your-server:8181
+
+# =============================================================================
+# IFlytek SDK Configuration (optional)
+# =============================================================================
+# If you don't need voice features, leave these empty
+# Get credentials from: https://console.xfyun.cn/app/myapp
+
+# IFlytek App ID
+IFLYTEK_APP_ID=
+
+# IFlytek API Key
+IFLYTEK_API_KEY=
+
+# IFlytek API Secret
+IFLYTEK_API_SECRET=
+
+# =============================================================================
+# Development Configuration (optional)
+# =============================================================================
+
+# Debug mode: true/false
+# DEBUG_MODE=true
+
+# Log level: VERBOSE/DEBUG/INFO/WARN/ERROR
+# LOG_LEVEL=DEBUG

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_small"
+    app:cardBackgroundColor="@color/card_background"
+    app:cardCornerRadius="@dimen/radius_medium"
+    app:cardElevation="0dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/card_border">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="@dimen/spacing_medium">
+
+        <!-- 状态图标容器 -->
+        <FrameLayout
+            android:layout_width="36dp"
+            android:layout_height="36dp">
+
+            <View
+                android:id="@+id/statusBackground"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/circle_status_pending" />
+
+            <ImageView
+                android:id="@+id/statusIcon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_pending_circle"
+                android:contentDescription="状态图标" />
+        </FrameLayout>
+
+        <!-- 权限信息 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/spacing_medium"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/permissionName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="权限名称"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/permissionDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="权限描述"
+                android:textColor="@color/text_tertiary"
+                android:textSize="@dimen/text_size_caption"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+        </LinearLayout>
+
+        <!-- 操作按钮 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/actionButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:minWidth="72dp"
+            android:paddingHorizontal="16dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="授权"
+            android:textColor="@color/accent_indigo"
+            android:textSize="@dimen/text_size_caption"
+            app:strokeColor="@color/accent_indigo"
+            app:strokeWidth="1dp"
+            app:cornerRadius="16dp" />
+
+    </LinearLayout>
+
+    <!-- 隐藏的分隔线，不再使用 -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone" />
+
+</com.google.android.material.card.MaterialCardView>

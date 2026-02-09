@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Custom colors - Premium Design -->
+    <color name="gradient_start">#0a0e27</color>
+    <color name="gradient_middle">#1a1f3a</color>
+    <color name="gradient_end">#0d1117</color>
+    
+    <color name="button_background">#6366f1</color>
+    <color name="button_gradient_start">#8b5cf6</color>
+    <color name="button_gradient_end">#6366f1</color>
+    <color name="card_background">#1a1f3a</color>
+    <color name="card_glass">#25FFFFFF</color>
+    <color name="card_glass_light">#15FFFFFF</color>
+    <color name="card_border">#30FFFFFF</color>
+    
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#E2E8F0</color>
+    <color name="text_tertiary">#CBD5E1</color>
+    <color name="text_accent">#FBBF24</color>
+    <color name="text_gradient_gold">#FBBF24</color>
+    
+    <!-- 文本透明度变体 -->
+    <color name="text_primary_90">#E6FFFFFF</color>
+    <color name="text_secondary_80">#CCB8C5D6</color>
+    <color name="text_tertiary_70">#B394A3B8</color>
+    
+    <color name="recording">#ef4444</color>
+    <color name="processing">#fbbf24</color>
+    <color name="success">#10b981</color>
+    <color name="error">#ef4444</color>
+    
+    <color name="wave_primary">#8b5cf6</color>
+    <color name="wave_secondary">#6366f1</color>
+    <color name="wave_accent">#fbbf24</color>
+    <color name="accent_purple">#8b5cf6</color>
+    <color name="accent_indigo">#6366f1</color>
+    <color name="accent_gold">#fbbf24</color>
+    
+    <!-- Settings screen colors -->
+    <color name="input_background">#2a2f4a</color>
+    <color name="text_hint">#64748b</color>
+    <color name="button_text">#0a0e27</color>
+    
+    <!-- Chip colors for better theme coordination -->
+    <color name="chip_background_unselected">#2a2f4a</color>
+    <color name="chip_background_selected">#6366f1</color>
+    <color name="chip_border_selected">#a5b4fc</color>
+    <color name="chip_text_unselected">#E2E8F0</color>
+    <color name="chip_text_selected">#FFFFFF</color>
+    
+    <!-- Input field colors for better visibility - optimized for dark theme -->
+    <color name="input_border_default">#8b9dff</color>
+    <color name="input_border_focused">#a5b4fc</color>
+    <color name="input_hint">#c7d2fe</color>
+    <color name="input_hint_focused">#e2e8f0</color>
+    <color name="input_text_hint">#c7d2fe</color>
+
+    <!-- Chip border colors - lighter for better visibility -->
+    <color name="chip_border_unselected">#7c8adb</color>
+
+    <!-- Premium AI Section - 突出核心功能 -->
+    <color name="ai_card_background">#1e2344</color>
+    <color name="ai_card_border">#8b5cf6</color>
+    <color name="ai_glow">#306366f1</color>
+
+    <!-- Minimal card style - 更轻量的卡片风格 -->
+    <color name="card_subtle">#15FFFFFF</color>
+    <color name="card_border_subtle">#20FFFFFF</color>
+
+    <!-- Hero button - 主要行动按钮 -->
+    <color name="hero_button_start">#8b5cf6</color>
+    <color name="hero_button_end">#6366f1</color>
+
+    <!-- 分隔线颜色 -->
+    <color name="divider">#30FFFFFF</color>
+    <color name="divider_subtle">#15FFFFFF</color>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- Skill Edit 页面优化色彩 - 极简设计 -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+
+    <!-- 背景色系 - 微妙的层次感 -->
+    <color name="skill_background">#1a1a2e</color>
+    <color name="skill_card_background">#252540</color>
+    <color name="skill_section_background">#1f1f38</color>
+
+    <!-- 文字色系 - 清晰的层次 -->
+    <color name="skill_text_primary">#FFFFFF</color>
+    <color name="skill_text_secondary">#8b8b9f</color>
+    <color name="skill_text_hint">#5a5a70</color>
+
+    <!-- 输入框 - 极简底线风格 -->
+    <color name="skill_input_line">#3d3d5c</color>
+    <color name="skill_input_line_focused">#6366f1</color>
+    <color name="skill_input_background">#00000000</color>
+
+    <!-- 分类标签 - 纯文字风格 -->
+    <color name="skill_category_active">#FFFFFF</color>
+    <color name="skill_category_inactive">#5a5a70</color>
+    <color name="skill_category_divider">#3d3d5c</color>
+
+    <!-- 计数器颜色 -->
+    <color name="skill_counter_normal">#5a5a70</color>
+    <color name="skill_counter_warning">#ef4444</color>
+
+    <!-- 底部抽屉 -->
+    <color name="skill_sheet_background">#252540</color>
+    <color name="skill_sheet_handle">#4a4a66</color>
+
+    <!-- Switch 开关颜色 -->
+    <color name="switch_thumb_color">#6366f1</color>
+    <color name="switch_track_color">#4a4a66</color>
+</resources>
+

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="6dp"
+    android:gravity="center_vertical">
+
+    <!-- 步骤状态图标 -->
+    <ImageView
+        android:id="@+id/stepStatusIcon"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:src="@drawable/ic_check_circle"
+        app:tint="@color/success"
+        tools:ignore="ContentDescription" />
+
+    <!-- 步骤序号 -->
+    <TextView
+        android:id="@+id/stepNumber"
+        android:layout_width="24dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp"
+        tools:text="1." />
+
+    <!-- 步骤名称 -->
+    <TextView
+        android:id="@+id/stepName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="4dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        tools:text="打开微信应用" />
+
+</LinearLayout>

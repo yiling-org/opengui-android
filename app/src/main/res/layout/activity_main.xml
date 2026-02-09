@@ -1,0 +1,868 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".MainActivity">
+
+    <!-- ============================================ -->
+    <!-- 顶部区域 - 极简设计，只保留必要元素 -->
+    <!-- ============================================ -->
+
+    <!-- 设置按钮 - 左上角（淡化处理） -->
+    <ImageButton
+        android:id="@+id/settingsButton"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_settings"
+        android:tint="@color/text_tertiary"
+        android:contentDescription="@string/accessibility_settings_button"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:alpha="0.6"
+        android:elevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 更多按钮 - 右上角（淡化处理） -->
+    <ImageButton
+        android:id="@+id/moreButton"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_more_vert"
+        android:tint="@color/text_tertiary"
+        android:contentDescription="更多选项"
+        android:padding="10dp"
+        android:scaleType="fitCenter"
+        android:alpha="0.6"
+        android:elevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 隐藏的按钮（保留兼容性） -->
+    <ImageButton
+        android:id="@+id/minimizeButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/inputModeToggleButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/historyButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 兼容性容器（隐藏） -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLeftGroup"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerRightGroup"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ============================================ -->
+    <!-- 中部区域 - Logo和状态（垂直居中） -->
+    <!-- ============================================ -->
+
+    <!-- AI 状态指示器 - 缩小尺寸，让步骤列表成为视觉中心 -->
+    <top.yling.ozx.guiagent.ui.AIStatusIndicatorView
+        android:id="@+id/aiStatusIndicator"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="12dp"
+        android:contentDescription="@string/accessibility_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settingsButton" />
+
+    <!-- 保留原始logoIcon的ID兼容性（隐藏） -->
+    <ImageView
+        android:id="@+id/logoIcon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 标题 - 紧凑布局 -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/app_name"
+        android:textColor="@color/text_primary"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        android:fontFamily="sans-serif-light"
+        android:letterSpacing="0.05"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/aiStatusIndicator" />
+
+    <!-- 副标题 - 紧凑布局 -->
+    <TextView
+        android:id="@+id/subtitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="君子动口，吾自躬行"
+        android:textColor="@color/text_tertiary"
+        android:textSize="10sp"
+        android:letterSpacing="0.1"
+        android:alpha="0.7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleText" />
+
+    <!-- ============================================ -->
+    <!-- 虚拟屏幕预览区域 - 后台运行时显示 -->
+    <!-- ============================================ -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/virtualDisplayCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:strokeWidth="0.5dp"
+        app:strokeColor="@color/card_border"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitleText"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintHeight_percent="0.50"
+        app:layout_constraintVertical_bias="0.25">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp">
+
+            <!-- 虚拟屏幕预览标题 -->
+            <TextView
+                android:id="@+id/virtualDisplayTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="虚拟屏幕"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/virtualDisplayStatus"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- 虚拟屏幕状态文本 -->
+            <TextView
+                android:id="@+id/virtualDisplayStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未创建"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- 虚拟屏幕预览图容器 -->
+            <FrameLayout
+                android:id="@+id/virtualDisplayPreviewContainer"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/virtual_display_placeholder_bg"
+                app:layout_constraintBottom_toTopOf="@id/virtualDisplayButtonsLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/virtualDisplayTitle">
+
+                <!-- 占位符文本 -->
+                <TextView
+                    android:id="@+id/virtualDisplayPlaceholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="点击下方按钮启动美团"
+                    android:textColor="@color/text_tertiary"
+                    android:textSize="12sp" />
+
+                <!-- 虚拟屏幕预览图 -->
+                <ImageView
+                    android:id="@+id/virtualDisplayPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone"
+                    android:contentDescription="虚拟屏幕预览" />
+
+            </FrameLayout>
+
+            <!-- 按钮行 -->
+            <LinearLayout
+                android:id="@+id/virtualDisplayButtonsLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <!-- 启动美团按钮 -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStartMeituanMain"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:text="启动美团"
+                    android:textSize="12sp"
+                    app:backgroundTint="@color/accent_indigo"
+                    app:cornerRadius="8dp" />
+
+                <!-- 停止按钮 -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStopMeituanMain"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp"
+                    android:text="关闭"
+                    android:textSize="12sp"
+                    android:textColor="@color/error"
+                    app:strokeColor="@color/error"
+                    app:strokeWidth="1dp"
+                    app:cornerRadius="8dp" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- 状态文本 - 显示当前状态 -->
+    <TextView
+        android:id="@+id/statusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text=""
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        android:letterSpacing="0.02"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitleText" />
+
+    <!-- ============================================ -->
+    <!-- 内容区域 - 转录和响应 -->
+    <!-- ============================================ -->
+
+    <!-- 转录文本卡片 - 显示语音识别结果 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/transcriptionCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:minHeight="60dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/statusText">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/glass_card"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/transcriptionLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TRANSCRIPTION"
+                android:textColor="@color/text_accent"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.08"
+                android:textAllCaps="true" />
+
+            <TextView
+                android:id="@+id/transcriptionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:minHeight="32dp"
+                android:text=""
+                android:textColor="@color/text_primary_90"
+                android:textSize="15sp"
+                android:lineSpacingMultiplier="1.3" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- 响应文本卡片 - 步骤列表成为视觉中心 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/responseCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="24dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toTopOf="@id/cancelTaskButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/statusText"
+        app:layout_constraintHeight_default="wrap"
+        app:layout_constraintHeight_max="420dp"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/glass_card"
+            android:padding="16dp"
+            android:scrollbars="vertical"
+            android:fadeScrollbars="true"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- 步骤列表区域 -->
+                <LinearLayout
+                    android:id="@+id/taskStepsContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:id="@+id/stepsLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="执行步骤"
+                            android:textColor="@color/text_accent"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.05" />
+
+                        <TextView
+                            android:id="@+id/stepsProgress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/text_secondary"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/taskStepsList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+
+                </LinearLayout>
+
+                <!-- 响应文本 -->
+                <TextView
+                    android:id="@+id/responseText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/text_primary"
+                    android:textSize="14sp"
+                    android:lineSpacingMultiplier="1.4" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- 任务状态文本 -->
+    <TextView
+        android:id="@+id/taskStatusText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/success"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/cancelTaskButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 打断任务按钮 - 极简圆形设计 -->
+    <ImageButton
+        android:id="@+id/cancelTaskButton"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/cancel_button_background"
+        android:src="@drawable/ic_stop"
+        android:tint="#EF4444"
+        android:scaleType="centerInside"
+        android:padding="14dp"
+        android:visibility="gone"
+        android:contentDescription="打断当前任务"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- ============================================ -->
+    <!-- 底部统一输入区域 - 语音模式整个区域可交互 -->
+    <!-- ============================================ -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/unifiedInputContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="28dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- 输入框背景发光层 -->
+        <View
+            android:id="@+id/inputGlowLayer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="-8dp"
+            android:layout_marginTop="-8dp"
+            android:layout_marginEnd="-8dp"
+            android:layout_marginBottom="-8dp"
+            android:background="@drawable/voice_input_recording_glow"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="@id/voiceInputCard"
+            app:layout_constraintEnd_toEndOf="@id/voiceInputCard"
+            app:layout_constraintStart_toStartOf="@id/voiceInputCard"
+            app:layout_constraintTop_toTopOf="@id/voiceInputCard" />
+
+        <!-- ============================================ -->
+        <!-- 语音输入卡片 - 整个区域可交互（语音模式显示） -->
+        <!-- ============================================ -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/voiceInputCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:hapticFeedbackEnabled="true"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="32dp"
+            app:cardElevation="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/voiceInputContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/voice_input_gradient_border"
+                android:minHeight="64dp">
+
+                <!-- 麦克风图标（语音模式显示，左侧） -->
+                <ImageView
+                    android:id="@+id/voiceMicIcon"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/ic_microphone"
+                    android:tint="@color/accent_purple"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 输入提示文本（语音模式空闲时显示，居中） -->
+                <TextView
+                    android:id="@+id/inputHintText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center"
+                    android:minHeight="64dp"
+                    android:text="按住说话"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/voiceSwipeHint"
+                    app:layout_constraintStart_toEndOf="@id/voiceMicIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 波形视图（语音模式录音时显示） -->
+                <top.yling.ozx.guiagent.WaveformView
+                    android:id="@+id/waveformView"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/voiceSwipeHint"
+                    app:layout_constraintStart_toEndOf="@id/voiceMicIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 上滑切换提示（右侧小箭头） -->
+                <LinearLayout
+                    android:id="@+id/voiceSwipeHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:alpha="0.6"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/voiceSwipeArrow"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_expand_less"
+                        android:tint="@color/text_tertiary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="文字"
+                        android:textColor="@color/text_tertiary"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- ============================================ -->
+        <!-- 文字输入卡片（文字模式显示） -->
+        <!-- ============================================ -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/textInputCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/unified_input_background"
+                android:minHeight="56dp">
+
+                <!-- 麦克风切换按钮（文字模式，左侧） -->
+                <ImageButton
+                    android:id="@+id/textModeVoiceButton"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="6dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_microphone"
+                    android:tint="@color/accent_purple"
+                    android:contentDescription="切换到语音模式"
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 文字输入框 -->
+                <EditText
+                    android:id="@+id/textInputField"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="输入消息..."
+                    android:textColorHint="@color/text_tertiary"
+                    android:textColor="@color/text_primary"
+                    android:textCursorDrawable="@drawable/cursor_white"
+                    android:textSize="15sp"
+                    android:minHeight="56dp"
+                    android:maxLines="4"
+                    android:scrollbars="vertical"
+                    android:gravity="center_vertical|start"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:imeOptions="actionSend"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/textSendButton"
+                    app:layout_constraintStart_toEndOf="@id/textModeVoiceButton"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 发送按钮（文字模式，右侧） -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/textSendButton"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginEnd="6dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="22dp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardElevation="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_gradient">
+
+                        <ImageView
+                            android:id="@+id/sendIcon"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_send"
+                            android:tint="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- 取消录音提示文本（滑出区域时显示） -->
+        <TextView
+            android:id="@+id/cancelHintText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="松手取消"
+            android:textColor="@color/error"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:alpha="0"
+            app:layout_constraintBottom_toTopOf="@id/voiceInputCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 兼容性：保留旧的ID引用 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/inputCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/modeToggleButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/modeToggleIcon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/actionButtonGlow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/actionButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/actionButtonIcon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- ============================================ -->
+    <!-- 兼容性保留的隐藏元素 -->
+    <!-- ============================================ -->
+
+    <!-- 录音按钮（保留ID兼容性，实际使用actionButton） -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/recordButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 旧的发光层 -->
+    <View
+        android:id="@+id/buttonGlowLayer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 水波纹效果层 -->
+    <View
+        android:id="@+id/rippleRing1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/rippleRing2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/rippleRing3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 旧的文字输入容器（保留ID兼容性，不含重复ID） -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/textInputContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <View
+            android:id="@+id/textInputGlowLayer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:id="@+id/sendButtonGlowLayer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 旧的麦克风图标（保留ID兼容性） -->
+    <ImageView
+        android:id="@+id/microphoneIcon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

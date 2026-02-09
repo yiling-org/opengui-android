@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background">
+
+    <!-- 标题区域 - 更紧凑 -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="32dp"
+        android:paddingHorizontal="@dimen/spacing_large"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 图标背景容器 -->
+        <FrameLayout
+            android:layout_width="64dp"
+            android:layout_height="64dp">
+
+            <View
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/circle_icon_background" />
+
+            <ImageView
+                android:id="@+id/iconHeader"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_shield_check"
+                android:tint="@color/white"
+                android:contentDescription="权限图标" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="权限设置"
+            android:textColor="@color/text_primary"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/subtitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xsmall"
+            android:text="授予以下权限以启用完整功能"
+            android:textColor="@color/text_tertiary"
+            android:textSize="@dimen/text_size_small"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+    <!-- 权限列表 - 无卡片包裹，更简洁 -->
+    <ScrollView
+        android:id="@+id/permissionsScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_marginBottom="@dimen/spacing_small"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout"
+        app:layout_constraintBottom_toTopOf="@id/buttonContainer">
+
+        <LinearLayout
+            android:id="@+id/permissionsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/spacing_medium" />
+
+    </ScrollView>
+
+    <!-- 底部按钮区域 -->
+    <LinearLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/spacing_medium"
+        android:paddingTop="@dimen/spacing_small"
+        android:paddingBottom="@dimen/spacing_medium"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- 进度提示 -->
+        <TextView
+            android:id="@+id/progressText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/spacing_small"
+            android:text="已完成 0/5 项"
+            android:textColor="@color/text_tertiary"
+            android:textSize="@dimen/text_size_small" />
+
+        <!-- 主按钮 - 更合适的高度 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/primaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="开始设置"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_body"
+            android:textStyle="bold"
+            app:backgroundTint="@color/accent_indigo"
+            app:cornerRadius="@dimen/radius_medium" />
+
+        <!-- 次要按钮 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/secondaryButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="稍后设置"
+            android:textColor="@color/text_tertiary"
+            android:textSize="@dimen/text_size_small" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

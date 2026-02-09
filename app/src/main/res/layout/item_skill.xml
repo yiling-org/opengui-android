@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_small"
+    app:cardBackgroundColor="@color/card_background"
+    app:cardCornerRadius="@dimen/radius_small"
+    app:cardElevation="2dp"
+    app:strokeWidth="0.5dp"
+    app:strokeColor="@color/card_border">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/card_padding_small">
+
+        <!-- 顶部行：标题 + 来源标签 + 开关 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- 技能名称 -->
+            <TextView
+                android:id="@+id/skillName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_body"
+                android:textStyle="bold" />
+
+            <!-- 来源标签 -->
+            <TextView
+                android:id="@+id/sourceTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_xsmall"
+                android:background="@drawable/tag_background"
+                android:paddingHorizontal="@dimen/spacing_xsmall"
+                android:paddingVertical="2dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_size_tiny" />
+
+            <!-- 启用开关 -->
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/enableSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_small"
+                app:thumbTint="@color/accent_indigo"
+                app:trackTint="@color/accent_indigo" />
+        </LinearLayout>
+
+        <!-- 分类标签 -->
+        <TextView
+            android:id="@+id/categoryTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_tiny"
+            android:textColor="@color/accent_gold"
+            android:textSize="@dimen/text_size_caption" />
+
+        <!-- 描述 -->
+        <TextView
+            android:id="@+id/skillDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xsmall"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/text_size_small"
+            android:lineSpacingExtra="@dimen/line_spacing_extra" />
+
+        <!-- 标签行 -->
+        <LinearLayout
+            android:id="@+id/tagsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xsmall"
+            android:orientation="horizontal"
+            android:visibility="gone" />
+
+        <!-- 分隔线 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@color/card_border" />
+
+        <!-- 底部操作按钮行 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <!-- 复制按钮 (仅系统技能显示) -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/forkButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="复制"
+                android:textColor="@color/accent_gold"
+                android:textSize="@dimen/text_size_small"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="@dimen/spacing_xsmall"
+                android:visibility="gone"
+                app:icon="@drawable/ic_copy"
+                app:iconSize="16dp"
+                app:iconTint="@color/accent_gold" />
+
+            <!-- 编辑按钮 (仅用户技能显示) -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/editButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="编辑"
+                android:textColor="@color/accent_indigo"
+                android:textSize="@dimen/text_size_small"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="@dimen/spacing_xsmall"
+                app:icon="@drawable/ic_edit"
+                app:iconSize="16dp"
+                app:iconTint="@color/accent_indigo" />
+
+            <!-- 删除按钮 (仅用户技能显示) -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/deleteButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="删除"
+                android:textColor="@color/error"
+                android:textSize="@dimen/text_size_small"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="@dimen/spacing_xsmall"
+                app:icon="@drawable/ic_delete"
+                app:iconSize="16dp"
+                app:iconTint="@color/error" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,56 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+  <group android:scaleX="0.8"
+      android:scaleY="0.8"
+      android:translateX="10.8"
+      android:translateY="10.8">
+    <!-- 外圈数字0 -->
+    <path
+        android:pathData="M54,20C36.3,20 22,34.3 22,52C22,69.7 36.3,84 54,84C71.7,84 86,69.7 86,52C86,34.3 71.7,20 54,20ZM54,74C42,74 32,64 32,52C32,40 42,30 54,30C66,30 76,40 76,52C76,64 66,74 54,74Z"
+        android:fillColor="#667EEA"/>
+    
+    <!-- 内部渐变圆环 -->
+    <path
+        android:pathData="M54,25C38.5,25 26,37.5 26,53C26,68.5 38.5,81 54,81C69.5,81 82,68.5 82,53C82,37.5 69.5,25 54,25ZM54,73C43.5,73 35,64.5 35,53C35,42.5 43.5,34 54,34C64.5,34 73,42.5 73,53C73,64.5 64.5,73 54,73Z"
+        android:fillColor="#764BA2"
+        android:fillAlpha="0.6"/>
+    
+    <!-- 中心麦克风图标 -->
+    <path
+        android:pathData="M54,42C51.8,42 50,43.8 50,46L50,54C50,56.2 51.8,58 54,58C56.2,58 58,56.2 58,54L58,46C58,43.8 56.2,42 54,42Z"
+        android:fillColor="#FFFFFF"/>
+    <path
+        android:pathData="M61,52C61,55.9 57.9,59 54,59C50.1,59 47,55.9 47,52"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:strokeLineCap="round"/>
+    <path
+        android:pathData="M54,59L54,64"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"/>
+    <path
+        android:pathData="M49,64L59,64"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"/>
+    
+    <!-- 装饰性小圆点 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M65,38 m-2,0 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0"
+        android:fillAlpha="0.8"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M70,45 m-1.5,0 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0"
+        android:fillAlpha="0.6"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M43,38 m-1.5,0 a1.5,1.5 0 1,0 3,0 a1.5,1.5 0 1,0 -3,0"
+        android:fillAlpha="0.6"/>
+  </group>
+</vector>

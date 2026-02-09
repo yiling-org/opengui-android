@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667EEA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764BA2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00D4FF;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#0091FF;stop-opacity:0.8" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景圆 -->
+  <circle cx="256" cy="256" r="240" fill="url(#bgGradient)"/>
+  
+  <!-- 外圈数字0 -->
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#FFFFFF" stroke-width="32" opacity="0.95"/>
+  
+  <!-- 内圈数字0 -->
+  <circle cx="256" cy="256" r="120" fill="none" stroke="url(#ringGradient)" stroke-width="28" opacity="0.9"/>
+  
+  <!-- 中心麦克风 -->
+  <g transform="translate(256, 256)">
+    <!-- 麦克风主体 -->
+    <rect x="-20" y="-50" width="40" height="60" rx="20" fill="#FFFFFF"/>
+    
+    <!-- 麦克风支架 -->
+    <path d="M -35 15 Q -35 35 0 35 Q 35 35 35 15" 
+          fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+    
+    <!-- 麦克风底座 -->
+    <line x1="0" y1="35" x2="0" y2="60" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+    <line x1="-25" y1="60" x2="25" y2="60" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+    
+    <!-- 声波效果 -->
+    <g opacity="0.7">
+      <path d="M -55 -10 Q -60 0 -55 10" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 55 -10 Q 60 0 55 10" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+      <path d="M -70 -15 Q -78 0 -70 15" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+      <path d="M 70 -15 Q 78 0 70 15" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+    </g>
+  </g>
+  
+  <!-- 装饰性星星/光点 -->
+  <circle cx="380" cy="180" r="8" fill="#FFFFFF" opacity="0.8"/>
+  <circle cx="420" cy="240" r="6" fill="#FFFFFF" opacity="0.6"/>
+  <circle cx="390" cy="280" r="5" fill="#FFFFFF" opacity="0.7"/>
+  <circle cx="132" cy="180" r="6" fill="#FFFFFF" opacity="0.6"/>
+  <circle cx="100" cy="240" r="5" fill="#FFFFFF" opacity="0.7"/>
+</svg>
+

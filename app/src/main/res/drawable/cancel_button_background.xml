@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- 半透明红色背景 - 极简风格 -->
+    <solid android:color="#33EF4444" />
+
+    <!-- 细微边框增加层次感 -->
+    <stroke
+        android:width="1.5dp"
+        android:color="#80EF4444" />
+
+</shape>

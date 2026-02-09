@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/skill_background">
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- Header: 返回 + 标题 + AI按钮 + 保存 - 固定在顶部 -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <LinearLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="返回"
+            android:padding="8dp"
+            android:src="@drawable/ic_back"
+            app:tint="@color/skill_text_secondary" />
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:text="新建技能"
+            android:textColor="@color/skill_text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- AI 魔法棒按钮 -->
+        <ImageButton
+            android:id="@+id/aiGenerateButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="AI 生成"
+            android:padding="8dp"
+            android:src="@drawable/ic_magic_wand" />
+
+        <!-- 保存按钮 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/saveButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:minWidth="0dp"
+            android:text="保存"
+            android:textColor="@color/accent_indigo"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- 主内容区域 -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@id/bottomContainer"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="24dp">
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- 技能名称 -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="技能名称"
+                android:textColor="@color/skill_text_primary"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/nameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/skill_input_underline"
+                android:hint="唯一标识，只能包含英文、数字和下划线"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingVertical="12dp"
+                android:textColor="@color/skill_text_primary"
+                android:textColorHint="@color/skill_text_hint"
+                android:textSize="14sp" />
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- 显示名称 -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="显示名称"
+                android:textColor="@color/skill_text_primary"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/displayNameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/skill_input_underline"
+                android:hint="用户可见的技能名称"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingVertical="12dp"
+                android:textColor="@color/skill_text_primary"
+                android:textColorHint="@color/skill_text_hint"
+                android:textSize="14sp" />
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- 技能描述 -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="技能描述"
+                    android:textColor="@color/skill_text_primary"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="选填"
+                    android:textColor="@color/skill_text_hint"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/descriptionInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/skill_input_underline"
+                    android:gravity="top|start"
+                    android:hint="简短描述技能的用途"
+                    android:inputType="textMultiLine"
+                    android:maxLines="3"
+                    android:minLines="2"
+                    android:paddingVertical="12dp"
+                    android:paddingEnd="48dp"
+                    android:textColor="@color/skill_text_primary"
+                    android:textColorHint="@color/skill_text_hint"
+                    android:textSize="14sp" />
+
+                <!-- 字符计数 - 右下角内嵌 -->
+                <TextView
+                    android:id="@+id/descriptionCounter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="0/200"
+                    android:textColor="@color/skill_counter_normal"
+                    android:textSize="11sp" />
+            </FrameLayout>
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- 分类 - 纯文字标签，用分隔符分开 -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="分类"
+                android:textColor="@color/skill_text_primary"
+                android:textSize="14sp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:overScrollMode="never"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/categoryContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/categoryWriting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:paddingHorizontal="2dp"
+                        android:paddingVertical="8dp"
+                        android:text="Writing"
+                        android:textColor="@color/skill_category_inactive"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="8dp"
+                        android:text="｜"
+                        android:textColor="@color/skill_category_divider"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/categoryCoding"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:paddingHorizontal="2dp"
+                        android:paddingVertical="8dp"
+                        android:text="Coding"
+                        android:textColor="@color/skill_category_inactive"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="8dp"
+                        android:text="｜"
+                        android:textColor="@color/skill_category_divider"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/categoryDaily"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:paddingHorizontal="2dp"
+                        android:paddingVertical="8dp"
+                        android:text="Daily"
+                        android:textColor="@color/skill_category_inactive"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="8dp"
+                        android:text="｜"
+                        android:textColor="@color/skill_category_divider"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/categoryCustom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:paddingHorizontal="2dp"
+                        android:paddingVertical="8dp"
+                        android:text="Custom"
+                        android:textColor="@color/skill_category_active"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- 分隔线 -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/divider_subtle" />
+
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <!-- 技能提示词 -->
+            <!-- ═══════════════════════════════════════════════════════════════ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="技能提示词"
+                        android:textColor="@color/skill_text_primary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="定义 AI 如何执行这个技能"
+                        android:textColor="@color/skill_text_hint"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- 模板按钮 -->
+                <ImageButton
+                    android:id="@+id/templateButton"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="插入模板"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_template" />
+
+                <!-- 预览按钮 -->
+                <ImageButton
+                    android:id="@+id/previewButton"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="4dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="预览"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_preview" />
+            </LinearLayout>
+
+            <!-- 内容输入框 - 初始3-4行，自动扩展 -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp">
+
+                <EditText
+                    android:id="@+id/contentInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/skill_input_underline"
+                    android:fontFamily="monospace"
+                    android:gravity="top|start"
+                    android:hint="在此输入提示词..."
+                    android:inputType="textMultiLine"
+                    android:lineSpacingExtra="2dp"
+                    android:maxLines="20"
+                    android:minLines="4"
+                    android:paddingVertical="12dp"
+                    android:paddingEnd="48dp"
+                    android:scrollbars="vertical"
+                    android:textColor="@color/skill_text_primary"
+                    android:textColorHint="@color/skill_text_hint"
+                    android:textSize="14sp" />
+
+                <!-- 字符计数 - 右下角内嵌 -->
+                <TextView
+                    android:id="@+id/contentCounter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="0/5000"
+                    android:textColor="@color/skill_counter_normal"
+                    android:textSize="11sp" />
+            </FrameLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- 底部固定保存按钮 -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <FrameLayout
+        android:id="@+id/bottomContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/skill_background"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/submitButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="保存技能"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/accent_indigo"
+            app:cornerRadius="12dp" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

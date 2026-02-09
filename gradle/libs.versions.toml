@@ -1,0 +1,75 @@
+[versions]
+agp = "8.13.2"
+kotlin = "2.1.0"
+coreKtx = "1.10.1"
+room = "2.6.1"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+appcompat = "1.6.1"
+material = "1.10.0"
+lifecycle = "2.6.2"
+activity = "1.8.0"
+retrofit = "2.9.0"
+okhttp = "4.12.0"
+coroutines = "1.7.3"
+lottie = "6.1.0"
+robolectric = "4.11.1"
+kotlinTest = "1.9.10"
+testCore = "1.5.0"
+# Shizuku 和 Refine 相关
+rikka_shizuku = "13.1.5"
+rikka_refine = "4.4.0"
+# kotlinx-serialization
+serialization = "1.6.3"
+# GKD selector
+selector = "1.11.6-SNAPSHOT"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
+kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlinTest" }
+androidx-test-core = { group = "androidx.test", name = "core", version.ref = "testCore" }
+# Shizuku API
+rikka-shizuku-api = { module = "dev.rikka.shizuku:api", version.ref = "rikka_shizuku" }
+rikka-shizuku-provider = { module = "dev.rikka.shizuku:provider", version.ref = "rikka_shizuku" }
+# Rikka Refine (隐藏API访问)
+rikka-refine-runtime = { module = "dev.rikka.tools.refine:runtime", version.ref = "rikka_refine" }
+rikka-refine-annotation = { module = "dev.rikka.tools.refine:annotation", version.ref = "rikka_refine" }
+rikka-refine-processor = { module = "dev.rikka.tools.refine:annotation-processor", version.ref = "rikka_refine" }
+# AndroidX Annotation
+androidx-annotation = "androidx.annotation:annotation:1.7.0"
+# Room Database
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+# LSPosed HiddenApiBypass
+lsposed-hiddenapibypass = "org.lsposed.hiddenapibypass:hiddenapibypass:6.1"
+# AndroidX Security (EncryptedSharedPreferences)
+androidx-security-crypto = "androidx.security:security-crypto:1.1.0-alpha06"
+# kotlinx-serialization
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
+# GKD selector (从本地 Maven 仓库)
+gkd-selector = { group = "li.songe", name = "selector-jvm", version.ref = "selector" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+rikka-refine = { id = "dev.rikka.tools.refine", version.ref = "rikka_refine" }
+ksp = { id = "com.google.devtools.ksp", version = "2.1.0-1.0.29" }
+

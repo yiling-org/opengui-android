@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/skill_sheet_background"
+    android:orientation="vertical"
+    android:paddingHorizontal="24dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="32dp">
+
+    <!-- 拖拽把手 -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/skill_sheet_handle" />
+
+    <!-- 标题 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="AI 智能生成"
+        android:textColor="@color/skill_text_primary"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="用自然语言描述，AI 自动生成技能定义"
+        android:textColor="@color/skill_text_secondary"
+        android:textSize="13sp" />
+
+    <!-- 输入框 -->
+    <EditText
+        android:id="@+id/aiPromptInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/skill_input_underline"
+        android:hint="例如：帮我写一封礼貌的请假邮件..."
+        android:inputType="textMultiLine"
+        android:maxLines="4"
+        android:minLines="2"
+        android:paddingVertical="12dp"
+        android:textColor="@color/skill_text_primary"
+        android:textColorHint="@color/skill_text_hint"
+        android:textSize="14sp" />
+
+    <!-- 字符计数 -->
+    <TextView
+        android:id="@+id/charCounter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="end"
+        android:text="0/500"
+        android:textColor="@color/skill_counter_normal"
+        android:textSize="11sp" />
+
+    <!-- 生成按钮 -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/generateButton"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:text="生成技能"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/accent_indigo"
+        app:cornerRadius="12dp"
+        app:icon="@drawable/ic_magic_wand"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:iconSize="20dp"
+        app:iconTint="@android:color/white" />
+
+    <!-- 加载状态 -->
+    <LinearLayout
+        android:id="@+id/loadingContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:indeterminateTint="@color/accent_purple" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="正在生成..."
+            android:textColor="@color/skill_text_secondary"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+</LinearLayout>

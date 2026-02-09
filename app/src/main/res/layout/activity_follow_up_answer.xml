@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background_transparent"
+    android:fitsSystemWindows="false"
+    tools:context=".FollowUpAnswerActivity">
+
+    <!-- ==================== 区域1：标题区域（固定在顶部，紧凑设计） ==================== -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/spacing_medium"
+        android:paddingEnd="@dimen/spacing_medium"
+        android:paddingTop="@dimen/spacing_small"
+        android:paddingBottom="@dimen/spacing_xsmall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- AI图标 -->
+        <ImageView
+            android:id="@+id/titleIcon"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_smart_toy"
+            android:tint="@color/accent_purple"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/titleText"
+            app:layout_constraintBottom_toBottomOf="@id/titleText" />
+
+        <!-- 标题 -->
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/app_name_question"
+            android:textColor="@color/accent_purple"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.02"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/titleIcon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 副标题提示 -->
+        <TextView
+            android:id="@+id/subtitleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="回复后继续执行任务"
+            android:textColor="@color/text_tertiary"
+            android:textSize="12sp"
+            android:letterSpacing="0.01"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/titleText"
+            app:layout_constraintTop_toBottomOf="@id/titleText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 分隔线（更细微） -->
+    <View
+        android:id="@+id/headerDivider"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_marginStart="@dimen/spacing_large"
+        android:layout_marginEnd="@dimen/spacing_large"
+        android:alpha="0.1"
+        android:background="@color/text_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerContainer" />
+
+    <!-- ==================== 区域2：内容区域（可滚动，紧跟标题） ==================== -->
+    <ScrollView
+        android:id="@+id/contentScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="false"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:paddingStart="@dimen/spacing_medium"
+        android:paddingEnd="@dimen/spacing_medium"
+        android:paddingTop="@dimen/spacing_small"
+        android:paddingBottom="@dimen/spacing_small"
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toTopOf="@id/unifiedInputContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerDivider"
+        app:layout_constraintVertical_bias="0">
+
+        <!-- 问题文本卡片（紧跟标题） -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/questionCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="@dimen/radius_medium"
+            app:cardElevation="2dp"
+            app:strokeWidth="0dp">
+
+            <TextView
+                android:id="@+id/questionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_primary"
+                android:textSize="15sp"
+                android:lineSpacingExtra="4dp"
+                android:padding="@dimen/spacing_medium"
+                android:gravity="start|top"
+                android:letterSpacing="0.01" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </ScrollView>
+
+    <!-- ==================== 区域3：输入区域（固定在底部，紧凑设计） ==================== -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/unifiedInputContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/spacing_medium"
+        android:paddingEnd="@dimen/spacing_medium"
+        android:paddingTop="@dimen/spacing_small"
+        android:paddingBottom="@dimen/spacing_medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- 输入框背景发光层 -->
+        <View
+            android:id="@+id/inputGlowLayer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="-6dp"
+            android:layout_marginTop="-6dp"
+            android:layout_marginEnd="-6dp"
+            android:layout_marginBottom="-6dp"
+            android:background="@drawable/voice_input_recording_glow"
+            android:alpha="0"
+            app:layout_constraintBottom_toBottomOf="@id/voiceInputCard"
+            app:layout_constraintEnd_toEndOf="@id/voiceInputCard"
+            app:layout_constraintStart_toStartOf="@id/voiceInputCard"
+            app:layout_constraintTop_toTopOf="@id/voiceInputCard" />
+
+        <!-- 语音输入卡片（语音模式显示） -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/voiceInputCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:hapticFeedbackEnabled="true"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="28dp"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/voiceInputContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/voice_input_gradient_border"
+                android:minHeight="52dp">
+
+                <!-- 麦克风图标 -->
+                <ImageView
+                    android:id="@+id/voiceMicIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_microphone"
+                    android:tint="@color/accent_purple"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 输入提示文本 -->
+                <TextView
+                    android:id="@+id/inputHintText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:gravity="center"
+                    android:minHeight="52dp"
+                    android:text="按住说话"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/voiceSwipeHint"
+                    app:layout_constraintStart_toEndOf="@id/voiceMicIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 波形视图（录音时显示） -->
+                <top.yling.ozx.guiagent.WaveformView
+                    android:id="@+id/waveformView"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/voiceSwipeHint"
+                    app:layout_constraintStart_toEndOf="@id/voiceMicIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 上滑切换提示 -->
+                <LinearLayout
+                    android:id="@+id/voiceSwipeHint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:alpha="0.6"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/voiceSwipeArrow"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_expand_less"
+                        android:tint="@color/text_tertiary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="文字"
+                        android:textColor="@color/text_tertiary"
+                        android:textSize="9sp" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- 文字输入卡片（文字模式显示） -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/textInputCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/unified_input_background"
+                android:minHeight="48dp">
+
+                <!-- 麦克风切换按钮 -->
+                <ImageButton
+                    android:id="@+id/textModeVoiceButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_microphone"
+                    android:tint="@color/accent_purple"
+                    android:contentDescription="切换到语音模式"
+                    android:padding="8dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 文字输入框 -->
+                <EditText
+                    android:id="@+id/answerInput"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:hint="请输入您的答案..."
+                    android:textColorHint="@color/text_tertiary"
+                    android:textColor="@color/text_primary"
+                    android:textCursorDrawable="@drawable/cursor_white"
+                    android:textSize="14sp"
+                    android:minHeight="48dp"
+                    android:maxLines="3"
+                    android:scrollbars="vertical"
+                    android:gravity="center_vertical|start"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:imeOptions="actionSend"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="6dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:importantForAccessibility="yes"
+                    android:contentDescription="答案输入框"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/textSendButton"
+                    app:layout_constraintStart_toEndOf="@id/textModeVoiceButton"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 发送按钮（文字模式） -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/textSendButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="4dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardCornerRadius="20dp"
+                    app:cardBackgroundColor="@android:color/transparent"
+                    app:cardElevation="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/button_gradient">
+
+                        <ImageView
+                            android:id="@+id/sendIcon"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/ic_send"
+                            android:tint="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- 取消录音提示文本 -->
+        <TextView
+            android:id="@+id/cancelHintText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:text="松手取消"
+            android:textColor="@color/error"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:alpha="0"
+            app:layout_constraintBottom_toTopOf="@id/voiceInputCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 兼容性：保留旧的ID引用 -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/answerInputCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

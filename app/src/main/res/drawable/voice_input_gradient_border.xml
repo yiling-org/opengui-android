@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 外层渐变边框 -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="34dp" />
+            <gradient
+                android:angle="135"
+                android:startColor="#8b5cf6"
+                android:centerColor="#6366f1"
+                android:endColor="#8b5cf6"
+                android:type="linear" />
+        </shape>
+    </item>
+
+    <!-- 内层背景 -->
+    <item
+        android:left="1.5dp"
+        android:top="1.5dp"
+        android:right="1.5dp"
+        android:bottom="1.5dp">
+        <shape android:shape="rectangle">
+            <corners android:radius="32dp" />
+            <solid android:color="@color/card_glass" />
+        </shape>
+    </item>
+</layer-list>

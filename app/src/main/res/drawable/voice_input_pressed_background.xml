@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- 胶囊形状圆角 -->
+    <corners android:radius="32dp" />
+
+    <!-- 按下时更亮的背景 -->
+    <solid android:color="#35FFFFFF" />
+
+    <!-- 按下时更亮的边框 -->
+    <stroke
+        android:width="2dp"
+        android:color="#A78BFA" />
+</shape>

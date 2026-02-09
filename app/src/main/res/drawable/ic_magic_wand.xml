@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Magic Wand Icon -->
+    <path
+        android:fillColor="#8b5cf6"
+        android:pathData="M7.5,5.6L5,7L6.4,4.5L5,2L7.5,3.4L10,2L8.6,4.5L10,7L7.5,5.6Z" />
+    <path
+        android:fillColor="#8b5cf6"
+        android:pathData="M19.5,15.4L22,14L20.6,16.5L22,19L19.5,17.6L17,19L18.4,16.5L17,14L19.5,15.4Z" />
+    <path
+        android:fillColor="#8b5cf6"
+        android:pathData="M22,2L20.6,4.5L22,7L19.5,5.6L17,7L18.4,4.5L17,2L19.5,3.4L22,2Z" />
+    <path
+        android:fillColor="#6366f1"
+        android:pathData="M14.5,2.5L3,14L7,18L18.5,6.5L14.5,2.5ZM5.41,14L14.5,4.91L16.09,6.5L7,15.59L5.41,14Z" />
+</vector>

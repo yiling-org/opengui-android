@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    
+    <!-- 圆角矩形 -->
+    <corners android:radius="36dp" />
+    
+    <!-- 极轻的渐变发光效果 -->
+    <gradient
+        android:angle="135"
+        android:startColor="#187C3AED"
+        android:centerColor="#28A855F7"
+        android:endColor="#18C084FC"
+        android:type="linear" />
+</shape>
+
