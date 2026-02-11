@@ -182,7 +182,13 @@ class InputController(
      * 设置文字模式按钮点击事件
      */
     private fun setupTextModeButtons() {
-        // 文字模式：麦克风切换按钮点击事件
+        // 语音模式：键盘切换按钮点击事件（切换到文字模式）
+        binding.voiceModeKeyboardButton.setOnClickListener {
+            performHapticFeedback()
+            toggleInputMode()
+        }
+
+        // 文字模式：麦克风切换按钮点击事件（切换到语音模式）
         binding.textModeVoiceButton.setOnClickListener {
             performHapticFeedback()
             toggleInputMode()

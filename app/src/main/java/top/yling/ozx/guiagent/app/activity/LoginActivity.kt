@@ -237,11 +237,6 @@ class LoginActivity : AppCompatActivity() {
             shakeView(binding.accessCodeInput)
             return false
         }
-        if (!accessCode.startsWith("ozx_")) {
-            showError("准入码格式不正确")
-            shakeView(binding.accessCodeInput)
-            return false
-        }
         return true
     }
 

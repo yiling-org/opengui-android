@@ -4,9 +4,20 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
-    <!-- 简洁的键盘图标 -->
+    <!-- 微信风格键盘图标：圆形边框 + 键盘按键 -->
+    <!-- 圆形边框 -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:pathData="M12,2C6.48,2 2,6.48 2,12s4.48,10 10,10 10,-4.48 10,-10S17.52,2 12,2z"/>
+    <!-- 键盘按键第一行 -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M20,5H4c-1.1,0 -2,0.9 -2,2v10c0,1.1 0.9,2 2,2h16c1.1,0 2,-0.9 2,-2V7c0,-1.1 -0.9,-2 -2,-2zM9,9h2v2H9V9zM7,9h2v2H7V9zM5,11h2V9H5v2zM11,11h6v2h-6v-2zM17,9h2v2h-2V9zM19,11h2V9h-2v2zM5,13h14v2H5v-2z"/>
+        android:pathData="M6.5,8.5h2v2h-2zM10.5,8.5h3v2h-3zM15.5,8.5h2v2h-2z"/>
+    <!-- 键盘按键第二行（空格键） -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M6.5,12.5h11v2h-11z"/>
 </vector>
 
