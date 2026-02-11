@@ -47,22 +47,22 @@
 1. 安装完成后，输入用户名、密码以及上面申请的准入码 完成登录
 2. 下面开始进行app授权
 - 登录后会自动弹出授权引导页，依次进行相关权限授权就好
-![01.jpg](images/auth/01.jpg)
 
-其中有几个容易配错或不容易找到的点：
-![03.png](images/auth/03.png)
-![04.png](images/auth/04.png)
+<img src="images/auth/01.jpg" width="280" />
 
-小米手机在权限引导完之后，还需要额外进行下配置
-![05.png](images/auth/05.png)
-![06.png](images/auth/06.png)
-![07.png](images/auth/07.png)
+- 其中有几个容易配错或不容易找到的点：
+
+<img src="images/auth/03.png" width="280" /> <img src="images/auth/04.png" width="280" />
+
+- 小米手机在权限引导完之后，还需要额外进行下配置
+
+<img src="images/auth/05.png" width="280" /> <img src="images/auth/06.png" width="280" /> <img src="images/auth/07.png" width="280" />
 
 ### 配置模型
 点击OpenGUI首页左上角的设置按钮 >> 高级设置
 + 配置大模型（下拉已做好排序,建议配置doubao-seed-1.8）
 + 配置语音识别模型：当前支持的是讯飞语音 （不配置首页会降级为文字输入）
-![01.jpg](images/model/01.jpg)
+<img src="images/model/01.jpg" width="280" />
 
 ### 开始使用
 回到首页，开始你的gui探索吧。

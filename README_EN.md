@@ -47,22 +47,22 @@
 1. After installation, enter your username, password, and the access code you applied for to log in
 2. Next, proceed with app authorization
 - After logging in, the authorization guide will pop up automatically. Follow the steps to grant the required permissions
-![01.jpg](images/auth/01.jpg)
+
+<img src="images/auth/01.jpg" width="280" />
 
 Some settings that are easy to misconfigure or hard to find:
-![03.png](images/auth/03.png)
-![04.png](images/auth/04.png)
+
+<img src="images/auth/03.png" width="280" /> <img src="images/auth/04.png" width="280" />
 
 For Xiaomi devices, additional configuration is needed after completing the permission guide:
-![05.png](images/auth/05.png)
-![06.png](images/auth/06.png)
-![07.png](images/auth/07.png)
+
+<img src="images/auth/05.png" width="280" /> <img src="images/auth/06.png" width="280" /> <img src="images/auth/07.png" width="280" />
 
 ### Configure Models
 Tap the settings button on the top-left corner of the OpenGUI home page >> Advanced Settings
 + Configure the LLM (the dropdown is pre-sorted; doubao-seed-1.8 is recommended)
 + Configure the speech recognition model: currently iFlytek Voice is supported (if not configured, the home page will fall back to text input)
-![01.jpg](images/model/01.jpg)
+<img src="images/model/01.jpg" width="280" />
 
 ### Start Using
 Go back to the home page and start your GUI exploration.
