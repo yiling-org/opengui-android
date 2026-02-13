@@ -1,7 +1,6 @@
 package top.yling.ozx.guiagent.websocket.handler
 
 import android.graphics.Rect
-import top.yling.ozx.guiagent.AgentOverlayService
 import top.yling.ozx.guiagent.MyAccessibilityService
 import top.yling.ozx.guiagent.a11y.a11yContext
 import top.yling.ozx.guiagent.websocket.CommandResult
@@ -49,9 +48,6 @@ class ClickHandler : ActionHandler {
                 return
             }
         }
-
-        // 显示点击反馈效果
-        AgentOverlayService.instance?.showClickFeedback(x, y)
 
         val service = context.service ?: run {
             callback(CommandResult(false, "无障碍服务未启用"))

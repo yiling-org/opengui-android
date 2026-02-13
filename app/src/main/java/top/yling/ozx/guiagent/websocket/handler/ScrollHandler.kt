@@ -1,6 +1,5 @@
 package top.yling.ozx.guiagent.websocket.handler
 
-import top.yling.ozx.guiagent.AgentOverlayService
 import top.yling.ozx.guiagent.websocket.CommandResult
 
 /**
@@ -21,9 +20,6 @@ class ScrollHandler : ActionHandler {
             return
         }
         val distance = context.params.distance ?: 500f
-
-        // 显示滑动反馈效果
-        AgentOverlayService.instance?.showScrollFeedback(x, y, direction, distance)
 
         val service = context.service ?: run {
             callback(CommandResult(false, "无障碍服务未启用"))

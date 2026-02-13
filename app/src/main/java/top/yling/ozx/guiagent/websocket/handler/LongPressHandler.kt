@@ -1,6 +1,5 @@
 package top.yling.ozx.guiagent.websocket.handler
 
-import top.yling.ozx.guiagent.AgentOverlayService
 import top.yling.ozx.guiagent.websocket.CommandResult
 
 /**
@@ -18,17 +17,11 @@ class LongPressHandler : ActionHandler {
         }
         val duration = context.params?.duration ?: 1000L
 
-        // 显示长按反馈效果（开始）
-        AgentOverlayService.instance?.showLongPressFeedback(x, y)
-
         val service = context.service ?: run {
             callback(CommandResult(false, "无障碍服务未启用"))
             return
         }
         service.longPress(x, y, duration) { success ->
-            // 隐藏长按反馈效果（结束）
-            AgentOverlayService.instance?.hideLongPressFeedback()
-
             context.wrappedCallback(CommandResult(success,
                 if (success) "长按成功 ($x, $y)" else "长按失败"))
         }

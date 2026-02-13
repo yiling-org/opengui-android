@@ -1,6 +1,5 @@
 package top.yling.ozx.guiagent.websocket.handler
 
-import top.yling.ozx.guiagent.AgentOverlayService
 import top.yling.ozx.guiagent.websocket.CommandResult
 
 /**
@@ -25,9 +24,6 @@ class DragHandler : ActionHandler {
             return
         }
         val duration = context.params.duration ?: 500L
-
-        // 显示拖拽反馈效果
-        AgentOverlayService.instance?.showDragFeedback(x1, y1, x2, y2)
 
         val service = context.service ?: run {
             callback(CommandResult(false, "无障碍服务未启用"))

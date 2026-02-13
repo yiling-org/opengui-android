@@ -7,21 +7,17 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.PixelFormat
-import android.media.AudioManager
 import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
 import android.util.Log
 import android.view.Gravity
-import android.view.KeyEvent
 import android.view.View
 import android.view.WindowManager
 import top.yling.ozx.guiagent.ui.ScreenBorderGlowView
 import top.yling.ozx.guiagent.ui.DynamicIslandView
-import top.yling.ozx.guiagent.ui.ActionFeedbackView
 import top.yling.ozx.guiagent.task.TaskManager
-import top.yling.ozx.guiagent.task.TaskInfo
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 
@@ -77,10 +73,8 @@ class AgentOverlayService : Service() {
     private lateinit var windowManager: WindowManager
     private var dynamicIslandView: DynamicIslandView? = null
     private var borderGlowView: ScreenBorderGlowView? = null
-    private var actionFeedbackView: ActionFeedbackView? = null
     private var dynamicIslandParams: WindowManager.LayoutParams? = null
     private var borderGlowParams: WindowManager.LayoutParams? = null
-    private var actionFeedbackParams: WindowManager.LayoutParams? = null
 
     // 当前状态
     private var currentStatus = STATUS_IDLE
@@ -109,8 +103,6 @@ class AgentOverlayService : Service() {
         // 初始化UI组件
         // 先添加边框光晕（在底层）
         setupBorderGlow()
-        // 添加操作反馈层（中层）
-        setupActionFeedback()
         // 后添加灵动岛（在上层，覆盖光晕）
         setupDynamicIsland()
 
@@ -287,48 +279,6 @@ class AgentOverlayService : Service() {
     }
 
     /**
-     * 设置操作反馈层
-     * 全屏覆盖，用于显示点击、滑动等操作的视觉反馈
-     */
-    private fun setupActionFeedback() {
-        actionFeedbackView = ActionFeedbackView(this)
-
-        val layoutFlag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
-        } else {
-            @Suppress("DEPRECATION")
-            WindowManager.LayoutParams.TYPE_PHONE
-        }
-
-        // 获取屏幕尺寸
-        val displayMetrics = resources.displayMetrics
-        val screenWidth = displayMetrics.widthPixels
-        val screenHeight = displayMetrics.heightPixels
-
-        actionFeedbackParams = WindowManager.LayoutParams(
-            screenWidth,
-            screenHeight + getStatusBarHeight() + getNavigationBarHeight(),
-            layoutFlag,
-            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
-                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE or
-                    WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN or
-                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            PixelFormat.TRANSLUCENT
-        ).apply {
-            gravity = Gravity.TOP or Gravity.START
-            x = 0
-            y = 0
-        }
-
-        try {
-            windowManager.addView(actionFeedbackView, actionFeedbackParams)
-            Log.d(TAG, "操作反馈层已添加，尺寸: ${screenWidth}x${screenHeight}")
-        } catch (e: Exception) {
-            Log.e(TAG, "添加操作反馈层失败: ${e.message}", e)
-        }
-    }
-
-    /**
      * 注册音量键监听（用于紧急中断）
      */
     private fun registerVolumeKeyReceiver() {
@@ -440,7 +390,6 @@ class AgentOverlayService : Service() {
         handler.post {
             dynamicIslandView?.hideForScreenshot()
             borderGlowView?.hideForScreenshot()
-            actionFeedbackView?.hideForScreenshot()
         }
     }
 
@@ -452,75 +401,6 @@ class AgentOverlayService : Service() {
         handler.post {
             dynamicIslandView?.showAfterScreenshot()
             borderGlowView?.showAfterScreenshot()
-            actionFeedbackView?.showAfterScreenshot()
-        }
-    }
-
-    // ========== 操作反馈 API ==========
-
-    /**
-     * 显示点击反馈效果
-     * @param x 点击位置X坐标（屏幕绝对坐标）
-     * @param y 点击位置Y坐标（屏幕绝对坐标）
-     */
-    fun showClickFeedback(x: Float, y: Float) {
-        handler.post {
-            actionFeedbackView?.showClickFeedback(x, y)
-        }
-    }
-
-    /**
-     * 显示长按反馈效果（开始）
-     * @param x 长按位置X坐标
-     * @param y 长按位置Y坐标
-     */
-    fun showLongPressFeedback(x: Float, y: Float) {
-        handler.post {
-            actionFeedbackView?.showLongPressFeedback(x, y)
-        }
-    }
-
-    /**
-     * 隐藏长按反馈效果（结束）
-     */
-    fun hideLongPressFeedback() {
-        handler.post {
-            actionFeedbackView?.hideLongPressFeedback()
-        }
-    }
-
-    /**
-     * 显示滑动反馈效果
-     * @param startX 起始位置X
-     * @param startY 起始位置Y
-     * @param direction 方向（up/down/left/right）
-     * @param distance 滑动距离
-     */
-    fun showScrollFeedback(startX: Float, startY: Float, direction: String, distance: Float) {
-        handler.post {
-            actionFeedbackView?.showScrollFeedback(startX, startY, direction, distance)
-        }
-    }
-
-    /**
-     * 显示拖拽反馈效果
-     * @param startX 起始位置X
-     * @param startY 起始位置Y
-     * @param endX 结束位置X
-     * @param endY 结束位置Y
-     */
-    fun showDragFeedback(startX: Float, startY: Float, endX: Float, endY: Float) {
-        handler.post {
-            actionFeedbackView?.showDragFeedback(startX, startY, endX, endY)
-        }
-    }
-
-    /**
-     * 显示输入反馈效果
-     */
-    fun showTypeFeedback() {
-        handler.post {
-            actionFeedbackView?.showTypeFeedback()
         }
     }
 
@@ -559,7 +439,6 @@ class AgentOverlayService : Service() {
         try {
             dynamicIslandView?.let { windowManager.removeView(it) }
             borderGlowView?.let { windowManager.removeView(it) }
-            actionFeedbackView?.let { windowManager.removeView(it) }
         } catch (e: Exception) {
             Log.e(TAG, "移除UI组件失败: ${e.message}")
         }

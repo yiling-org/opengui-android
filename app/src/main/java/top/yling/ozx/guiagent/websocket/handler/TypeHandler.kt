@@ -1,6 +1,5 @@
 package top.yling.ozx.guiagent.websocket.handler
 
-import top.yling.ozx.guiagent.AgentOverlayService
 import top.yling.ozx.guiagent.websocket.CommandResult
 
 /**
@@ -16,9 +15,6 @@ class TypeHandler : ActionHandler {
             callback(CommandResult(false, "缺少参数 content"))
             return
         }
-
-        // 显示输入反馈效果
-        AgentOverlayService.instance?.showTypeFeedback()
 
         val service = context.service ?: run {
             callback(CommandResult(false, "无障碍服务未启用"))
