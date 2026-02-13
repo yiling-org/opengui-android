@@ -633,7 +633,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/unified_input_background"
-                android:minHeight="56dp">
+                android:minHeight="64dp">
 
                 <!-- 麦克风切换按钮（文字模式，左侧） -->
                 <ImageButton
@@ -662,7 +662,7 @@
                     android:textColor="@color/text_primary"
                     android:textCursorDrawable="@drawable/cursor_white"
                     android:textSize="15sp"
-                    android:minHeight="56dp"
+                    android:minHeight="64dp"
                     android:maxLines="4"
                     android:scrollbars="vertical"
                     android:gravity="center_vertical|start"

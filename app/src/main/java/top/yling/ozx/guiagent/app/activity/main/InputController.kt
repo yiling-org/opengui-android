@@ -273,11 +273,7 @@ class InputController(
                 animationManager.stopAllRecordingAnimations()
                 animationManager.stopVoiceGlowPulseAnimation()
 
-                // 自动聚焦到输入框
-                binding.textInputField.postDelayed({
-                    binding.textInputField.requestFocus()
-                    showKeyboard(binding.textInputField)
-                }, 200)
+                // 不自动弹出键盘，等用户点击输入框时再弹出
 
                 android.util.Log.d("InputController", "已切换到文字模式")
             }

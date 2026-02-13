@@ -44,7 +44,7 @@
             android:id="@+id/accountCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/section_spacing"
             app:cardBackgroundColor="@color/card_background"
             app:cardCornerRadius="@dimen/radius_medium"
             app:cardElevation="4dp"
@@ -62,11 +62,11 @@
                 <!-- 头像 -->
                 <ImageView
                     android:id="@+id/avatarImageView"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="88dp"
+                    android:layout_height="88dp"
                     android:src="@drawable/ic_person"
-                    android:background="@drawable/circle_avatar_border"
-                    android:padding="16dp"
+                    android:background="@drawable/avatar_glow_background"
+                    android:padding="20dp"
                     android:scaleType="fitCenter"
                     android:tint="@color/text_primary"
                     android:contentDescription="用户头像" />
@@ -79,8 +79,10 @@
                     android:layout_marginTop="@dimen/spacing_small"
                     android:text="Not logged in"
                     android:textColor="@color/text_primary"
-                    android:textSize="@dimen/text_size_body"
+                    android:textSize="@dimen/text_size_title"
                     android:textStyle="bold"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.02"
                     android:gravity="center" />
 
                 <!-- 个人说明标题和编辑按钮 -->
@@ -122,7 +124,8 @@
                     android:text="点击编辑添加个人说明..."
                     android:textColor="@color/text_secondary"
                     android:textSize="@dimen/text_size_small"
-                    android:alpha="0.7"
+                    android:alpha="0.85"
+                    android:lineSpacingExtra="@dimen/line_spacing_extra"
                     android:padding="@dimen/spacing_small"
                     android:background="@drawable/profile_display_background"
                     android:minHeight="60dp"
@@ -218,7 +221,7 @@
             android:id="@+id/websocketCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/section_spacing"
             app:cardBackgroundColor="@color/card_background"
             app:cardCornerRadius="@dimen/radius_medium"
             app:cardElevation="4dp"
@@ -238,7 +241,9 @@
                     android:text="连接"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_size_body"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.03" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/websocketUrlLayout"
@@ -336,7 +341,7 @@
             android:id="@+id/advancedSettingsCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/section_spacing"
             android:layout_marginBottom="@dimen/spacing_medium"
             app:cardBackgroundColor="@color/card_background"
             app:cardCornerRadius="@dimen/radius_medium"
@@ -372,15 +377,18 @@
                         android:text="高级设置"
                         android:textColor="@color/text_primary"
                         android:textSize="@dimen/text_size_body"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="0.03" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/spacing_tiny"
                         android:text="权限、调试、模型等专业配置"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="@dimen/text_size_caption" />
+                        android:textColor="@color/text_tertiary"
+                        android:textSize="@dimen/text_size_caption"
+                        android:lineSpacingExtra="2dp" />
                 </LinearLayout>
 
                 <ImageView

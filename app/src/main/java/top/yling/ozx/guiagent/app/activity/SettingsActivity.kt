@@ -263,10 +263,10 @@ class SettingsActivity : AppCompatActivity() {
     private fun updateProfileDisplay(profile: String?) {
         if (profile.isNullOrEmpty()) {
             binding.userProfileDisplay.text = "点击编辑添加个人说明..."
-            binding.userProfileDisplay.alpha = 0.5f
+            binding.userProfileDisplay.alpha = 0.6f
         } else {
             binding.userProfileDisplay.text = profile
-            binding.userProfileDisplay.alpha = 0.7f
+            binding.userProfileDisplay.alpha = 0.85f
         }
     }
 

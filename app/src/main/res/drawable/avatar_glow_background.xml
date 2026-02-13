@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 外层光晕 -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#206366f1" />
+        </shape>
+    </item>
+    <!-- 中层光晕 -->
+    <item
+        android:left="4dp"
+        android:top="4dp"
+        android:right="4dp"
+        android:bottom="4dp">
+        <shape android:shape="oval">
+            <solid android:color="#308b5cf6" />
+        </shape>
+    </item>
+    <!-- 内层实心背景 -->
+    <item
+        android:left="8dp"
+        android:top="8dp"
+        android:right="8dp"
+        android:bottom="8dp">
+        <shape android:shape="oval">
+            <solid android:color="@color/card_background" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/accent_indigo" />
+        </shape>
+    </item>
+</layer-list>
