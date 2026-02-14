@@ -40,7 +40,7 @@
 3. 等待审批(再次点击申请准入码可以看到最新进度以及准入码)
 
 ### 下载apk
-https://github.com/yiling-org/opengui-android/releases/tag/v1.0.0
+https://github.com/yiling-org/opengui-android/releases
 
 
 ### 安装&登录&授权
