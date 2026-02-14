@@ -173,25 +173,38 @@
                 android:background="@drawable/voice_input_gradient_border"
                 android:minHeight="52dp">
 
-                <!-- 麦克风图标 -->
-                <ImageView
-                    android:id="@+id/voiceMicIcon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/ic_microphone"
+                <!-- 键盘切换按钮（语音模式，左侧，点击切换到文字模式） -->
+                <ImageButton
+                    android:id="@+id/voiceModeKeyboardButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="6dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_keyboard"
                     android:tint="@color/accent_purple"
+                    android:contentDescription="切换到文字模式"
+                    android:padding="8dp"
+                    android:scaleType="fitCenter"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <!-- 输入提示文本 -->
+                <!-- 麦克风图标（隐藏，保留兼容性） -->
+                <ImageView
+                    android:id="@+id/voiceMicIcon"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- 输入提示文本（语音模式空闲时显示，居中） -->
                 <TextView
                     android:id="@+id/inputHintText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
                     android:gravity="center"
                     android:minHeight="52dp"
                     android:text="按住说话"
@@ -200,49 +213,38 @@
                     android:textStyle="bold"
                     android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/voiceSwipeHint"
-                    app:layout_constraintStart_toEndOf="@id/voiceMicIcon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/voiceModeKeyboardButton"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <!-- 波形视图（录音时显示） -->
+                <!-- 波形视图（语音模式录音时显示） -->
                 <top.yling.ozx.guiagent.WaveformView
                     android:id="@+id/waveformView"
                     android:layout_width="0dp"
                     android:layout_height="36dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="16dp"
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/voiceSwipeHint"
-                    app:layout_constraintStart_toEndOf="@id/voiceMicIcon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/voiceModeKeyboardButton"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <!-- 上滑切换提示 -->
+                <!-- 上滑切换提示（隐藏，保留兼容性） -->
                 <LinearLayout
                     android:id="@+id/voiceSwipeHint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="gone"
                     android:orientation="vertical"
-                    android:gravity="center"
-                    android:alpha="0.6"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
                         android:id="@+id/voiceSwipeArrow"
-                        android:layout_width="14dp"
-                        android:layout_height="14dp"
-                        android:src="@drawable/ic_expand_less"
-                        android:tint="@color/text_tertiary" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="文字"
-                        android:textColor="@color/text_tertiary"
-                        android:textSize="9sp" />
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
@@ -268,7 +270,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/unified_input_background"
-                android:minHeight="48dp">
+                android:minHeight="52dp">
 
                 <!-- 麦克风切换按钮 -->
                 <ImageButton
@@ -297,7 +299,7 @@
                     android:textColor="@color/text_primary"
                     android:textCursorDrawable="@drawable/cursor_white"
                     android:textSize="14sp"
-                    android:minHeight="48dp"
+                    android:minHeight="52dp"
                     android:maxLines="3"
                     android:scrollbars="vertical"
                     android:gravity="center_vertical|start"

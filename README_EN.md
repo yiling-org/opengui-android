@@ -184,3 +184,9 @@ For enhanced capabilities:
 ./gradlew test
 ./gradlew connectedAndroidTest
 ```
+
+## Community
+
+Join our WeChat group to discuss OpenGUI usage and development:
+
+<img src="images/group/wechat.jpg" width="280" />

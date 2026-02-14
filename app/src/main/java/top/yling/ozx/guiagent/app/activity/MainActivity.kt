@@ -2053,6 +2053,9 @@ class MainActivity : AppCompatActivity() {
         // 显示步骤容器
         stepsContainer.visibility = View.VISIBLE
 
+        // 清空 responseText，避免同时显示原始 Markdown 和解析后的步骤列表
+        binding.responseText.text = ""
+
         // 显示步骤进度（与任务历史页面保持一致）
         val completedCount = validSteps.count {
             val status = it.status?.uppercase() ?: ""

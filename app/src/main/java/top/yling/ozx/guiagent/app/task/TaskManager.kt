@@ -102,13 +102,14 @@ object TaskManager {
     /**
      * 收到 agent_response 消息
      * 推断：AI正在处理中
-     * 
+     *
      * 注意：此方法只负责提取信息和更新中间状态，不会将任务标记为 COMPLETED
      * 真正的完成判断只在收到 task_completed 消息时（onAgentComplete）进行
      * 这避免了客户端提前判断完成导致 UI 提前隐藏的问题
-     * 
+     *
      * @author shanwb - 修复灵动岛状态闪烁问题：黄→绿→黄→绿
-     * 
+     * @author shanwb - 修复灵动岛状态恢复：支持从FAILED状态恢复到PROCESSING
+     *
      * @param content 本次收到的data内容
      * @param taskId 任务ID（用于后续发送followup问题时使用）
      * @return AgentResponseResult 包含可能提取到的 followup 问题和 life_assistant 信息
@@ -117,22 +118,39 @@ object TaskManager {
         var followUpQuestion: FollowUpQuestion? = null
         var lifeAssistant: LifeAssistantInfo? = null
         var resultText: String? = null
-        
-        // 如果任务已经是终态，不再处理 agent_response（防止 task_completed 后的消息覆盖状态）
-        // 这是修复灵动岛状态闪烁问题的关键：当 task_completed 和后续的 agent_response 消息
-        // 几乎同时到达时，可能导致状态在 COMPLETED(绿色) 和 PROCESSING(黄色) 之间快速切换
+
+        // 如果任务已经是终态，检查是否可以恢复
+        // COMPLETED 和 CANCELLED 是真正的终态，不可恢复
+        // FAILED 状态可能是临时错误（如LLM调用失败），收到新的 agent_response 说明任务仍在继续，应该恢复
         val currentTask = _currentTask.value
-        if (currentTask != null && currentTask.isTerminal()) {
-            Log.d(TAG, "任务已是终态(${currentTask.status})，忽略 agent_response 消息，防止状态闪烁")
-            return AgentResponseResult(null, null, null)
+        if (currentTask != null) {
+            when (currentTask.status) {
+                TaskStatus.COMPLETED, TaskStatus.CANCELLED -> {
+                    Log.d(TAG, "任务已是终态(${currentTask.status})，忽略 agent_response 消息，防止状态闪烁")
+                    return AgentResponseResult(null, null, null)
+                }
+                TaskStatus.FAILED -> {
+                    // FAILED 状态可恢复：收到新的 agent_response 说明后端仍在处理
+                    Log.i(TAG, "任务从 FAILED 状态恢复，收到新的 agent_response，继续处理")
+                }
+                else -> {
+                    // 其他状态正常处理
+                }
+            }
         }
         
         updateCurrentTask { task ->
             // 双重检查：在 updateCurrentTask 内部再次检查终态
             // 因为在多线程环境下，状态可能在外部检查和内部更新之间发生变化
-            if (task.isTerminal()) {
+            // 注意：FAILED 状态可恢复，只有 COMPLETED 和 CANCELLED 是真正的终态
+            if (task.status == TaskStatus.COMPLETED || task.status == TaskStatus.CANCELLED) {
                 Log.d(TAG, "updateCurrentTask 内部检测到任务已是终态(${task.status})，跳过状态更新")
                 return@updateCurrentTask task  // 返回原任务，不做任何修改
+            }
+            // 如果是从 FAILED 状态恢复，清除错误信息
+            val shouldClearError = task.status == TaskStatus.FAILED
+            if (shouldClearError) {
+                Log.i(TAG, "updateCurrentTask: 从 FAILED 状态恢复到 PROCESSING")
             }
             // 拼接data内容
             task.accumulatedData.append(content)
@@ -180,13 +198,15 @@ object TaskManager {
             }
             
             // 始终保持 PROCESSING 状态，等待 task_completed 消息确认完成
+            // 如果是从 FAILED 状态恢复，清除错误信息
             task.copy(
                 status = TaskStatus.PROCESSING,
                 lastMessage = taskProgress ?: "",
                 accumulatedData = task.accumulatedData,
                 taskProgress = taskProgress,
                 steps = parsedSteps,
-                totalSteps = parsedSteps?.size ?: task.totalSteps
+                totalSteps = parsedSteps?.size ?: task.totalSteps,
+                errorMessage = if (shouldClearError) null else task.errorMessage
             )
         }
         
@@ -547,8 +567,20 @@ object TaskManager {
 
     /**
      * 任务出错
+     *
+     * @param error 错误信息
+     * @param isFatal 是否为致命错误。致命错误会将任务移动到历史记录，非致命错误（如LLM调用失败）
+     *               只更新状态为FAILED，但保留任务以便后续恢复。默认为false（非致命错误）。
+     *
+     * @author shanwb - 修复灵动岛状态管理：区分可恢复错误和致命错误
+     *
+     * 设计说明：
+     * - 非致命错误（isFatal=false）：如LLM调用失败、网络超时等，任务可能会在重试后恢复
+     *   此时只更新状态为FAILED，不移动到历史记录，允许后续agent_response恢复状态
+     * - 致命错误（isFatal=true）：如任务被明确终止、超时清理等，任务不可恢复
+     *   此时将任务移动到历史记录
      */
-    fun onTaskError(error: String) {
+    fun onTaskError(error: String, isFatal: Boolean = false) {
         updateCurrentTask { task ->
             task.copy(
                 status = TaskStatus.FAILED,
@@ -557,8 +589,13 @@ object TaskManager {
                 accumulatedData = task.accumulatedData
             )
         }
-        moveCurrentTaskToHistory()
-        Log.e(TAG, "任务出错: ${getCurrentTaskId()}, 错误: $error")
+        if (isFatal) {
+            moveCurrentTaskToHistory()
+            Log.e(TAG, "任务致命错误: ${getCurrentTaskId()}, 错误: $error")
+        } else {
+            // 非致命错误，保留任务以便后续恢复
+            Log.w(TAG, "任务临时错误（可恢复）: ${getCurrentTaskId()}, 错误: $error")
+        }
     }
 
     /**

@@ -652,7 +652,8 @@ class WebSocketClient(
             Log.i(TAG, "Agent消息已发送: taskId=$taskId")
             return taskId
         } else {
-            TaskManager.onTaskError("消息发送失败")
+            // 消息发送失败是致命错误，任务无法继续
+            TaskManager.onTaskError("消息发送失败", isFatal = true)
             Log.e(TAG, "Agent消息发送失败: taskId=$taskId")
             return null
         }

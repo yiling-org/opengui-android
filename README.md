@@ -185,3 +185,9 @@ IFLYTEK_API_SECRET=your_api_secret
 ./gradlew test
 ./gradlew connectedAndroidTest
 ```
+
+## 交流群
+
+欢迎加入微信交流群，一起讨论 OpenGUI 的使用和开发：
+
+<img src="images/group/wechat.jpg" width="280" />

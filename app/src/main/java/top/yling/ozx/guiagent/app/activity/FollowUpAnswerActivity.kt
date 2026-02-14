@@ -89,7 +89,7 @@ class FollowUpAnswerActivity : AppCompatActivity() {
     private var pendingStopCallback: ((String) -> Unit)? = null
     
     // 输入模式管理
-    private var currentInputMode = InputMode.VOICE
+    private var currentInputMode = InputMode.TEXT
     
     // 录音状态
     private var isRecording = false
@@ -414,29 +414,35 @@ class FollowUpAnswerActivity : AppCompatActivity() {
         
         // 设置语音输入触摸监听
         setupVoiceInputTouchListener()
-        
-        // 文字模式：麦克风切换按钮点击事件
+
+        // 语音模式：键盘切换按钮点击事件（切换到文字模式）
+        binding.voiceModeKeyboardButton.setOnClickListener {
+            performHapticFeedback()
+            toggleInputMode()
+        }
+
+        // 文字模式：麦克风切换按钮点击事件（切换到语音模式）
         binding.textModeVoiceButton.setOnClickListener {
             performHapticFeedback()
             toggleInputMode()
         }
-        
+
         // 文字模式：发送按钮点击事件
         binding.textSendButton.setOnClickListener {
             performHapticFeedback()
             sendAnswer()
         }
-        
+
         // 发送按钮点击事件（已注释，使用文字输入模式中的发送按钮）
         // binding.sendButton.setOnClickListener {
         //     sendAnswer()
         // }
-        
+
         // 取消按钮点击事件（已注释，不再使用）
         // binding.cancelButton.setOnClickListener {
         //     finish()
         // }
-        
+
         // 输入框回车键监听
         binding.answerInput.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_SEND) {
@@ -446,69 +452,69 @@ class FollowUpAnswerActivity : AppCompatActivity() {
                 false
             }
         }
-        
-        // 根据输入模式决定是否自动聚焦
-        if (currentInputMode == InputMode.TEXT) {
-            binding.answerInput.post {
-                binding.answerInput.requestFocus()
-                showKeyboard(binding.answerInput)
-            }
-        }
+
+        // 不自动聚焦和弹出键盘，等用户点击输入框时再弹出
     }
-    
+
     /**
      * 设置 Chat 消息模式
      */
     private fun setupChatMode(messages: String) {
         // 显示消息
         binding.questionText.text = messages
-        
+
         // 更新标题和副标题
         binding.titleText.text = getString(R.string.app_name_message)
         binding.subtitleText.text = "回复后继续对话"
-        
+
         // 显示输入框和发送按钮（已注释，使用文字输入模式中的发送按钮）
         binding.answerInputCard.visibility = android.view.View.VISIBLE
         // binding.sendButton.visibility = android.view.View.VISIBLE
-        
+
         // 显示取消按钮（已注释，不再显示）
         // binding.cancelButton.visibility = android.view.View.VISIBLE
         // binding.cancelButtonText.text = "取消"
         // binding.cancelButton.setCardBackgroundColor(getColor(R.color.card_background))
         // binding.cancelButtonText.setTextColor(getColor(R.color.text_secondary))
         // binding.cancelButtonText.setTypeface(null, android.graphics.Typeface.NORMAL)
-        
+
         // 更新输入框提示
         binding.answerInput.hint = "请输入您的回复..."
-        
+
         // 立即尝试绑定服务（不等待 onStart）
         bindWebSocketService()
-        
+
         // 设置语音输入触摸监听
         setupVoiceInputTouchListener()
-        
-        // 文字模式：麦克风切换按钮点击事件
+
+        // 语音模式：键盘切换按钮点击事件（切换到文字模式）
+        binding.voiceModeKeyboardButton.setOnClickListener {
+            performHapticFeedback()
+            toggleInputMode()
+        }
+
+        // 文字模式：麦克风切换按钮点击事件（切换到语音模式）
         binding.textModeVoiceButton.setOnClickListener {
             performHapticFeedback()
             toggleInputMode()
         }
-        
+
         // 文字模式：发送按钮点击事件
         binding.textSendButton.setOnClickListener {
             performHapticFeedback()
             sendAnswer()
         }
-        
+
         // 发送按钮点击事件（已注释，使用文字输入模式中的发送按钮）
         // binding.sendButton.setOnClickListener {
         //     sendAnswer()
         // }
-        
+
         // 取消按钮点击事件（已注释，不再使用）
         // binding.cancelButton.setOnClickListener {
         //     finish()
         // }
-        
+
         // 输入框回车键监听
         binding.answerInput.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_SEND) {
@@ -518,14 +524,8 @@ class FollowUpAnswerActivity : AppCompatActivity() {
                 false
             }
         }
-        
-        // 根据输入模式决定是否自动聚焦
-        if (currentInputMode == InputMode.TEXT) {
-            binding.answerInput.post {
-                binding.answerInput.requestFocus()
-                showKeyboard(binding.answerInput)
-            }
-        }
+
+        // 不自动聚焦和弹出键盘，等用户点击输入框时再弹出
     }
     
     
@@ -1116,11 +1116,7 @@ class FollowUpAnswerActivity : AppCompatActivity() {
                 // 停止录音相关动画
                 stopVoiceGlowPulseAnimation()
 
-                // 自动聚焦到输入框
-                binding.answerInput.postDelayed({
-                    binding.answerInput.requestFocus()
-                    showKeyboard(binding.answerInput)
-                }, 200)
+                // 不自动弹出键盘，等用户点击输入框时再弹出
 
                 android.util.Log.d(TAG, "已切换到文字模式")
             }
