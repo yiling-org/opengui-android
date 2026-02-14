@@ -9,5 +9,6 @@ package top.yling.ozx.guiagent.model
 data class ModelType(
     val name: String,
     val displayName: String,
-    val description: String
+    val description: String,
+    val requiresModelKey: Boolean = false
 )

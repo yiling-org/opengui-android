@@ -520,20 +520,44 @@ class AdvancedSettingsActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.llmTypeSpinner.adapter = adapter
 
+        // 添加选择监听，根据模型类型显示/隐藏 Model Key 输入框
+        binding.llmTypeSpinner.onItemSelectedListener = object : android.widget.AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: android.widget.AdapterView<*>?, view: android.view.View?, position: Int, id: Long) {
+                updateModelKeyVisibility(position)
+            }
+            override fun onNothingSelected(parent: android.widget.AdapterView<*>?) {}
+        }
+
         val savedType = AppSettings.getLlmType(this)
         val typeIndex = modelTypes.indexOfFirst { it.name == savedType }
         if (typeIndex >= 0) {
             binding.llmTypeSpinner.setSelection(typeIndex)
         }
+        // 初始化时也更新一次可见性
+        updateModelKeyVisibility(if (typeIndex >= 0) typeIndex else 0)
+    }
+
+    /**
+     * 根据选中的模型类型更新 Model Key 输入框的可见性
+     */
+    private fun updateModelKeyVisibility(position: Int) {
+        val requiresModelKey = if (modelTypes.isNotEmpty() && position in modelTypes.indices) {
+            modelTypes[position].requiresModelKey
+        } else {
+            true // 默认显示（兼容旧版本）
+        }
+        binding.llmModelKeyLayout.visibility = if (requiresModelKey) android.view.View.VISIBLE else android.view.View.GONE
     }
 
     private fun saveLlmConfig() {
         val selectedIndex = binding.llmTypeSpinner.selectedItemPosition
-        val selectedType = if (modelTypes.isNotEmpty() && selectedIndex in modelTypes.indices) {
-            modelTypes[selectedIndex].name
+        val selectedModel = if (modelTypes.isNotEmpty() && selectedIndex in modelTypes.indices) {
+            modelTypes[selectedIndex]
         } else {
-            "DOUBAO_VISION"
+            null
         }
+        val selectedType = selectedModel?.name ?: "DOUBAO_VISION"
+        val requiresModelKey = selectedModel?.requiresModelKey ?: true
 
         val apiKey = binding.llmApiKeyInput.text.toString().trim()
         val modelKey = binding.llmModelKeyInput.text.toString().trim()
@@ -543,9 +567,14 @@ class AdvancedSettingsActivity : AppCompatActivity() {
             return
         }
 
+        if (requiresModelKey && modelKey.isEmpty()) {
+            Toast.makeText(this, "请输入 Model Key", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         AppSettings.setLlmType(this, selectedType)
         AppSettings.setLlmApiKey(this, apiKey)
-        AppSettings.setLlmModelKey(this, modelKey)
+        AppSettings.setLlmModelKey(this, if (requiresModelKey) modelKey else "")
 
         Toast.makeText(this, "模型配置已保存", Toast.LENGTH_SHORT).show()
     }
