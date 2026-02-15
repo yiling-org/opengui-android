@@ -37,7 +37,7 @@
 ### 注册用户
 1. 浏览器打开 https://www.yiling.top/ 在该网站进行用户注册
 2. 申请准入码![准入码申请](images/accessCode01.png)
-3. 等待审批(再次点击申请准入码可以看到最新进度以及准入码)
+3. 等待审批(审批很快，稍等会再次点击申请准入码，可以看到最新进度以及准入码 *暂时没有短信提醒*)
 
 ### 下载apk
 https://github.com/yiling-org/opengui-android/releases
