@@ -37,10 +37,10 @@
 ### 注册用户
 1. 浏览器打开 https://www.yiling.top/ 在该网站进行用户注册
 2. 申请准入码![准入码申请](images/accessCode01.png)
-3. 等待审批(再次点击申请准入码可以看到最新进度以及准入码)
+3. 等待审批(审批很快，稍等会再次点击申请准入码，可以看到最新进度以及准入码 *暂时没有短信提醒*)
 
 ### 下载apk
-https://github.com/yiling-org/opengui-android/releases/tag/v1.0.0
+https://github.com/yiling-org/opengui-android/releases
 
 
 ### 安装&登录&授权
@@ -72,8 +72,10 @@ https://github.com/yiling-org/opengui-android/releases/tag/v1.0.0
 - 帮我打开抖音，给第一个视频点个赞
 
 ### 更多示例：
-https://www.bilibili.com/video/BV1LHFozvE8p/?spm_id_from=333.1365.list.card_archive.click&vd_source=188ebf1bb206b1bd7cdeca76fcae790d
-
+- [OpenGUI+豆包2.0：看AI如何2分钟搞定美团买菜](bilibili.com/video/BV1szZJB6EMS/)
+- [震撼！AI Agent自己订火车票，自主规划全流程](https://www.bilibili.com/video/BV1sZcjzrEHY/)
+- [依零开源安卓Agent App：手机自动化进入"OpenClaw"时代](https://www.bilibili.com/video/BV1LHFozvE8p/)
+- [操作Chrome的Agent即将开源，敬请期待](https://www.bilibili.com/video/BV1ejcLzDEmp/)
 
 --------
 
