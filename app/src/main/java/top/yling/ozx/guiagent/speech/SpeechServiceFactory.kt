@@ -2,6 +2,7 @@ package top.yling.ozx.guiagent.speech
 
 import android.content.Context
 import top.yling.ozx.guiagent.speech.impl.android.AndroidTTSEngine
+import top.yling.ozx.guiagent.speech.impl.google.GoogleSpeechRecognizer
 import top.yling.ozx.guiagent.speech.impl.iflytek.IFlytekSpeechRecognizer
 import top.yling.ozx.guiagent.speech.impl.iflytek.IFlytekWakeUpEngine
 
@@ -74,9 +75,7 @@ object SpeechServiceFactory {
     ): SpeechRecognizer {
         return when (provider) {
             ASRProvider.IFLYTEK -> IFlytekSpeechRecognizer(context)
-            ASRProvider.GOOGLE -> throw UnsupportedOperationException(
-                "Google Speech 尚未实现，欢迎贡献代码！"
-            )
+            ASRProvider.GOOGLE -> GoogleSpeechRecognizer(context)
             ASRProvider.WHISPER -> throw UnsupportedOperationException(
                 "Whisper 尚未实现，欢迎贡献代码！"
             )
@@ -137,7 +136,7 @@ object SpeechServiceFactory {
      * @return 已实现的提供商列表
      */
     fun getAvailableASRProviders(): List<ASRProvider> {
-        return listOf(ASRProvider.IFLYTEK)
+        return listOf(ASRProvider.IFLYTEK, ASRProvider.GOOGLE)
     }
 
     /**
