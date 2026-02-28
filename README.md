@@ -72,7 +72,7 @@ https://github.com/yiling-org/opengui-android/releases
 - 帮我打开抖音，给第一个视频点个赞
 
 ### 更多示例：
-- [OpenGUI+豆包2.0：看AI如何2分钟搞定美团买菜](bilibili.com/video/BV1szZJB6EMS/)
+- [OpenGUI+豆包2.0：看AI如何2分钟搞定美团买菜](https://bilibili.com/video/BV1szZJB6EMS/)
 - [震撼！AI Agent自己订火车票，自主规划全流程](https://www.bilibili.com/video/BV1sZcjzrEHY/)
 - [依零开源安卓Agent App：手机自动化进入"OpenClaw"时代](https://www.bilibili.com/video/BV1LHFozvE8p/)
 - [操作Chrome的Agent即将开源，敬请期待](https://www.bilibili.com/video/BV1ejcLzDEmp/)
